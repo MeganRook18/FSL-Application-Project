@@ -1,0 +1,2 @@
+# FSL-Application-Project
+Angular Application for company X. Company X has a very large application project, which will contain multiple nested tables and a lot of functionality accessed by buttons (icons) that will update/modify the table data. The size of nesting is not explicit and it may change anytime from 1 to 4 levels or even more, e.g. the top level table may contain clients details, the next level is taxation transactions, the next level is transaction breakdown, and the next level is transaction source.

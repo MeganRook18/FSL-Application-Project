@@ -1,0 +1,13 @@
+<section id="header-container">
+  <section id="navigation-container">
+    <div class="navigation-container">
+      <nav>
+        <a class="page-links" *ngFor="let link of routeLinks; let i = index" id="{{link.link}}" [routerLink]="link.link"
+          routerLinkActive #rla="routerLinkActive">
+          {{link.label}}
+        </a>
+      </nav>
+    </div>
+
+  </section>
+</section>

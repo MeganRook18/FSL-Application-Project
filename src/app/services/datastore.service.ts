@@ -1,0 +1,45 @@
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { Observable, forkJoin } from 'rxjs';
+import { authI, policiesI, policiesDetailsI } from '../app.models';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class DatastoreService {
+
+  private SERVER_URL: string = "http://localhost:8080/api/";
+
+  constructor(
+    private router: Router,
+    private http: HttpClient
+  ) { }
+
+  
+  navigateTo(page: string) {
+    this.router.navigate([`/${page}`]);
+  }
+
+  public getUser(): Observable<authI[]> {
+    return this.http.get<authI[]>(this.SERVER_URL + 'auth');
+  }
+
+  public getPolicies(): Observable<policiesI[]> {
+    return this.http.get<policiesI[]>(this.SERVER_URL + 'policies');
+  }
+
+  public getPoliciesDetails(): Observable<policiesDetailsI[]> {
+    return this.http.get<policiesDetailsI[]>(this.SERVER_URL + 'policiesDetails');
+  }
+
+
+  // Only for Demo purposes
+  public apiData(): Observable<any[]> {
+    let response1 = this.getUser();
+    let response2 = this.getPolicies();
+    let response3 = this.getPoliciesDetails();
+    return forkJoin([response1, response2, response3]);
+  }
+
+}

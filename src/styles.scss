@@ -1,0 +1,41 @@
+/* You can add global styles to this file, and also import other style files */
+
+* {
+    font-family: 'DIN', Arial, Helvetica, sans-serif; // font-size: 14px;
+    outline: none !important;
+    font-size: 14px;
+}
+
+html {
+    background: #fafafa;
+    scroll-behavior: smooth;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    display: block;
+    margin: 0px auto;
+    position: relative;
+}
+
+.hide {
+    display: none !important;
+}
+
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+
+.row {
+    width: 100%;
+    display: inline-block;
+}
+
+a {
+    cursor: pointer;
+}

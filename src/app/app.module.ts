@@ -15,6 +15,7 @@ import { SignInComponent } from './pages/sign-in/sign-in.component';
 import { CurrentStatusComponent } from './pages/current-status/current-status.component';
 import { NestedDataComponent } from './pages/nested-data/nested-data.component';
 import { HeaderComponent } from './components/header/header.component';
+import {MatCardModule, MatFormFieldModule, MatInputModule} from "@angular/material";
 
 @NgModule({
   declarations: [
@@ -25,15 +26,18 @@ import { HeaderComponent } from './components/header/header.component';
     NestedDataComponent,
     HeaderComponent
   ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    AppRoutingModule,
-    HttpClientModule,
-    ReactiveFormsModule,
-    BrowserAnimationsModule,
-    InMemoryWebApiModule.forRoot(ApiDataService)
-  ],
+    imports: [
+        BrowserModule,
+        FormsModule,
+        AppRoutingModule,
+        HttpClientModule,
+        ReactiveFormsModule,
+        BrowserAnimationsModule,
+        InMemoryWebApiModule.forRoot(ApiDataService),
+        MatCardModule,
+        MatFormFieldModule,
+        MatInputModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

@@ -1,15 +1,29 @@
 <section id="login-container">
+    <mat-card>
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
+        <mat-card-header>
+          <h1 i18n class="mat-headline">Welcome to Company X</h1>
+        </mat-card-header>
 
-  <section id="form-content">
+      <mat-card-content>
+        <mat-form-field>
+          <label>
+            <input matInput type="text" placeholder="Email" value="" />
+          </label>
+        </mat-form-field>
+        <mat-form-field>
+          <label>
+            <input matInput type="text" placeholder="Password" value="" />
+          </label>
+        </mat-form-field>
+      </mat-card-content>
 
-    <input type="text" placeholder="Email" value="" />
+      <mat-card-actions>
+        <button type="submit" id="login-btn">Login</button>
 
-    <input type="text" placeholder="Password" value="">
+        <a (click)="navigateTo('sign-in')">Sign In</a>
+      </mat-card-actions>
 
-    <button type="submit" id="login-btn">Login</button>
-
-    <a (click)="navigateTo('sign-in')">Sign In</a>
-
-  </section>
-
+    </form>
+    </mat-card>
 </section>

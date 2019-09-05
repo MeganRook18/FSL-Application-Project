@@ -1,29 +1,48 @@
-<section id="login-container">
-    <mat-card>
+<div class="wrapper">
+  <div class="container">
     <form [formGroup]="loginForm" (ngSubmit)="login()">
-        <mat-card-header>
-          <h1 i18n class="mat-headline">Welcome to Company X</h1>
-        </mat-card-header>
+      <mat-card>
+        <div class="login-form">
+          <mat-card-header class="d-flex flex-column text-center login-components-title">
+            <h4 i18n class="font-weight-bold">Welcome back Company X</h4>
+            <h6>Sign in to continue</h6>
+          </mat-card-header>
 
-      <mat-card-content>
-        <mat-form-field>
-          <label>
-            <input matInput type="text" placeholder="Email" value="" />
-          </label>
-        </mat-form-field>
-        <mat-form-field>
-          <label>
-            <input matInput type="text" placeholder="Password" value="" />
-          </label>
-        </mat-form-field>
-      </mat-card-content>
+          <mat-card-content>
+            <mat-form-field class="input-full-width">
+              <input
+                formControlName="username"
+                type="text"
+                matInput
+                required
+                i18n-placeholder
+                placeholder="Enter your username"
+              />
+            </mat-form-field>
 
-      <mat-card-actions>
-        <button type="submit" id="login-btn">Login</button>
+            <mat-form-field class="input-full-width">
+              <input
+                formControlName="password"
+                matInput
+                required
+                i18n-placeholder
+                placeholder="Enter your password"
+                [type]="hidePassword ? 'password' : 'text'"
+              />
+              <mat-icon matSuffix (click)="hidePassword = !hidePassword"
+              >{{ hidePassword ? "visibility" : "visibility_off" }}
+              </mat-icon>
+            </mat-form-field>
+          </mat-card-content>
+          <mat-card-actions class="d-flex flex-column">
+            <button i18n mat-raised-button color="primary" type="submit" id="login-btn">
+              Login
+            </button>
+             <a class="text-center" (click)="navigateTo('sign-in')" i18n>Sign In</a>
+          </mat-card-actions>
+        </div>
 
-        <a (click)="navigateTo('sign-in')">Sign In</a>
-      </mat-card-actions>
-
+      </mat-card>
     </form>
-    </mat-card>
-</section>
+  </div>
+</div>

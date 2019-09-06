@@ -247,7 +247,6 @@ export class ApiDataService implements InMemoryDbService {
       { detailsId: 7, polId: 8, amount: 4000, clientName: "admin1" },
       { detailsId: 8, polId: 8, amount: 500, clientName: "admin7" },
       { detailsId: 9, polId: 8, amount: 5500, clientName: "admin8" },
-
       { detailsId: 11, polId: 11, amount: 100, clientName: "admin21" },
       { detailsId: 12, polId: 13, amount: 100, clientName: "admin21" },
       { detailsId: 13, polId: 14, amount: 900, clientName: "admin22" },
@@ -273,4 +272,4 @@ export class ApiDataService implements InMemoryDbService {
 
 // Add to Description
 // 1. add to each request the Autorization tokenName
-// 2. edit page and url params - modifie the records for specific user.
+// 2. edit page and url params - modified the records for specific user.

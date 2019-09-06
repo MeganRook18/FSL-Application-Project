@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Router } from "@angular/router";
 import { Observable, forkJoin } from "rxjs";
 import { authI, policiesI, policiesDetailsI } from "../app.models";
@@ -28,6 +28,13 @@ export class DatastoreService {
     return this.http.get<policiesDetailsI[]>(
       this.SERVER_URL + "policiesDetails"
     );
+  }
+
+  public createUser(user) {
+    const options = {
+      headers: new HttpHeaders({ "Content-Type": "application/json" })
+    };
+    return this.http.post(this.SERVER_URL + "auth", user, options);
   }
 
   // Only for Demo purposes

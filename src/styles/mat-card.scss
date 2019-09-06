@@ -1,0 +1,33 @@
+@import "variables";
+
+// shared style for forms
+.form-shared {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  mat-card-header {
+    margin: 2em 0;
+  }
+  mat-card-actions {
+    margin: 2em 0;
+    button {
+      width: $buttonSize;
+      margin: 0.5em 0;
+      text-align: center;
+    }
+    a{
+      margin: 0.5em 0;
+    }
+  }
+  .confirmPasswordInput {
+    margin-top: 5%;
+  }
+  .input-full-width {
+    width: 100%;
+  }
+  mat-icon {
+    cursor: pointer;
+  }
+}

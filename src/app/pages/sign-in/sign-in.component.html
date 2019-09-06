@@ -1,17 +1,111 @@
-<section id="sign-in-container">
+<form [formGroup]="signUpForm" (ngSubmit)="signUp()">
+  <mat-card>
+    <div class="form-shared">
+      <mat-card-header>
+        <mat-card-header class="d-flex flex-column text-center">
+          <h4 i18n class="font-weight-bold">Company X Sign Up</h4>
+          <h6>Please enter a valid email address & create a password</h6>
+        </mat-card-header>
+      </mat-card-header>
 
-    <section id="form-content">
-  
-      <input type="text" placeholder="Email" value="" />
-  
-      <input type="text" placeholder="Password" value="">
+      <mat-card-content>
+        <!-- Email -->
+        <mat-form-field class="input-full-width">
+          <label>
+            <input
+              formControlName="email"
+              type="email"
+              matInput
+              required
+              placeholder="Enter your email"
+            />
+          </label>
+          <mat-error *ngIf="hasError('email', 'pattern')" i18n
+            >Incorrect formatting</mat-error
+          >
+        </mat-form-field>
+        <!-- User name -->
+        <mat-form-field class="input-full-width">
+          <label>
+            <input
+              formControlName="username"
+              type="text"
+              matInput
+              required
+              placeholder="Enter an username"
+            />
+          </label>
+          <mat-error *ngIf="hasError('email', 'pattern')" i18n
+            >Incorrect formatting</mat-error
+          >
+        </mat-form-field>
 
-      <input type="text" placeholder="Re-password" value="">
-  
-      <button type="submit" id="login-btn">Sign In</button>
-  
-      <a (click)="navigateTo('login')">Sign In</a>
-  
-    </section>
-  
-  </section>
+        <!-- Enter New Password -->
+        <mat-form-field appearance="outline" class="input-full-width">
+          <mat-label i18n="@@ssp_newPassword">New Password</mat-label>
+          <label>
+            <input
+              matInput
+              #passwordWithValidation
+              required
+              formControlName="password"
+              placeholder="New Password"
+              [type]="hidePassword ? 'password' : 'text'"
+            />
+          </label>
+          <mat-icon matSuffix (click)="hidePassword = !hidePassword"
+            >{{ hidePassword ? "visibility" : "visibility_off" }}
+          </mat-icon>
+        </mat-form-field>
+        <mat-password-strength
+          [password]="passwordWithValidation.value"
+          (onStrengthChanged)="onStrengthChanged($event)"
+        >
+        </mat-password-strength>
+        <!-- Password's strength info -->
+        <label *ngIf="passwordStrength > 1" class="password-strength" i18n
+          >Password Strength:
+          <span *ngIf="passwordStrength <= 20" i18n="@@ssp_weak">Weak</span>
+          <span
+            *ngIf="passwordStrength > 21 && passwordStrength <= 80"
+            i18n="@@ssp_medium"
+            >Medium</span
+          >
+          <span *ngIf="passwordStrength > 81" i18n="@@ssp_strong">Strong</span>
+        </label>
+        <!-- Confirm New Password -->
+        <mat-form-field
+          appearance="outline"
+          class="input-full-width confirmPasswordInput"
+        >
+          <mat-label i18n="@@ssp_confirmPassword">Confirm Password</mat-label>
+          <label>
+            <input
+              matInput
+              formControlName="confirmPassword"
+              required
+              placeholder="Confirm Password"
+              [type]="hidePassword ? 'password' : 'text'"
+            />
+          </label>
+          <mat-icon matSuffix (click)="hidePassword = !hidePassword"
+            >{{ hidePassword ? "visibility" : "visibility_off" }}
+          </mat-icon>
+        </mat-form-field>
+      </mat-card-content>
+      <mat-card-actions class="d-flex flex-column">
+        <button
+          i18n
+          mat-raised-button
+          color="primary"
+          [disabled]="loading"
+          type="submit"
+        >
+          Create Account
+        </button>
+        <a class="text-center" (click)="navigateTo('login')">Login</a>
+      </mat-card-actions>
+    </div>
+    <app-error-messages [errors]="errors"></app-error-messages>
+  </mat-card>
+</form>

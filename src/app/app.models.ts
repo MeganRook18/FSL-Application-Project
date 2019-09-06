@@ -1,8 +1,8 @@
 export class authI {
-    email: string;
     userId: number;
     username: string;
     password: string;
+    email: string;
 }
 
 export class policiesI {

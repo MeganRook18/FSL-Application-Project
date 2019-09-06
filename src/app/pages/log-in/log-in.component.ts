@@ -1,22 +1,16 @@
-import {Component, OnDestroy, OnInit} from "@angular/core";
-import { DatastoreService } from "src/app/services/datastore.service";
+import { Component, OnDestroy } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
-import {Subscription} from "rxjs";
+import { Subscription } from "rxjs";
 
-enum ErrorType {
-  Failed = "failed",
-  Disabled = "disabled",
-  Network = "network",
-  Unknown = "unknown",
-  Validation = "validation"
-}
+import { DatastoreService } from "src/app/services/datastore.service";
+import { ErrorType } from "../../shared/types";
 
 @Component({
   selector: "app-log-in",
   templateUrl: "./log-in.component.html",
   styleUrls: ["./log-in.component.scss"]
 })
-export class LogInComponent implements OnInit, OnDestroy {
+export class LogInComponent implements OnDestroy {
   public loginForm = new FormGroup({
     username: new FormControl("", [Validators.required]),
     password: new FormControl("", [Validators.required])
@@ -32,13 +26,8 @@ export class LogInComponent implements OnInit, OnDestroy {
    *
    *  1) Take and validate the user input fields
    *  2) Connect with API
-   *  3) Display the necessary error messages
-   *  4) Style the page
-   *  5) Header should`t be visible for this page
    *
    */
-  ngOnInit() {}
-
   navigateTo(page: string) {
     this.dataStore.navigateTo(page);
   }
@@ -52,6 +41,10 @@ export class LogInComponent implements OnInit, OnDestroy {
     }
     this.loading = true;
     // subscription
+    this._subscription = this.dataStore.getUser().subscribe(
+        user => {
+          console.log(user);
+        });
   }
 
     ngOnDestroy(): void {

@@ -23,6 +23,28 @@ webpackEmptyAsyncContext.id = "./$$_lazy_route_resource lazy recursive";
 
 /***/ }),
 
+/***/ "./node_modules/raw-loader/index.js!./src/app/_layout/app-layout/app-layout.component.html":
+/*!****************************************************************************************!*\
+  !*** ./node_modules/raw-loader!./src/app/_layout/app-layout/app-layout.component.html ***!
+  \****************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<app-header></app-header>\n<router-outlet></router-outlet>\n"
+
+/***/ }),
+
+/***/ "./node_modules/raw-loader/index.js!./src/app/_layout/pre-autehtication/pre-authentication.component.html":
+/*!*******************************************************************************************************!*\
+  !*** ./node_modules/raw-loader!./src/app/_layout/pre-autehtication/pre-authentication.component.html ***!
+  \*******************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"page-wrapper\">\n    <div class=\"container-fluid\">\n        <router-outlet></router-outlet>\n    </div>\n</div>\n"
+
+/***/ }),
+
 /***/ "./node_modules/raw-loader/index.js!./src/app/app.component.html":
 /*!**************************************************************!*\
   !*** ./node_modules/raw-loader!./src/app/app.component.html ***!
@@ -30,7 +52,18 @@ webpackEmptyAsyncContext.id = "./$$_lazy_route_resource lazy recursive";
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<section id=\"wrapper\">\n\n  <section id=\"header-wrapper\">\n    <app-header></app-header>\n  </section>\n\n  <section id=\"body-wrapper\">\n    <router-outlet></router-outlet>\n  </section>\n\n</section>"
+module.exports = "<router-outlet></router-outlet>\n\n\n"
+
+/***/ }),
+
+/***/ "./node_modules/raw-loader/index.js!./src/app/components/error-messages/error-messages.component.html":
+/*!***************************************************************************************************!*\
+  !*** ./node_modules/raw-loader!./src/app/components/error-messages/error-messages.component.html ***!
+  \***************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"text-center\">\n<ng-container *ngFor=\"let error of errors\">\n  <ng-container [ngSwitch]=\"error\">\n    <mat-error *ngSwitchCase=\"errorType.Validation\">\n       <span i18n>Please enter your login credentials</span>\n    </mat-error>\n    <mat-error *ngSwitchCase=\"errorType.Failed\">\n       <span i18n>Login details not recognised</span>\n    </mat-error>\n    <mat-error i18n *ngSwitchCase=\"errorType.Network\"\n    >A communication problem occurred, please speak to Company X support if you believe this is\n      in error\n    </mat-error>\n    <mat-error  *ngSwitchCase=\"errorType.Unknown\" i18n\n    >An unknown error occurred, please contact Company X support\n    </mat-error>\n  </ng-container>\n</ng-container>\n</div>\n"
 
 /***/ }),
 
@@ -63,7 +96,7 @@ module.exports = "<section id=\"current-status-container\">\n  <p>\n    current-
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<section id=\"login-container\">\n    <mat-card>\n    <form [formGroup]=\"loginForm\" (ngSubmit)=\"login()\">\n        <mat-card-header>\n          <h1 i18n class=\"mat-headline\">Welcome to Company X</h1>\n        </mat-card-header>\n\n      <mat-card-content>\n        <mat-form-field>\n          <label>\n              <input formControlName=\"username\"\n                type=\"text\"\n                matInput\n                required\n                placeholder=\"Enter your email\"/>\n          </label>\n        </mat-form-field>\n        <mat-form-field>\n            <label>\n                <input\n                  formControlName=\"password\"\n                  matInput\n                  required\n                  placeholder=\"Enter your password\"\n                  [type]=\"hidePassword ? 'password' : 'text'\"\n                />\n            </label>\n            <mat-icon matSuffix (click)=\"hidePassword = !hidePassword\"\n              >{{ hidePassword ? \"visibility\" : \"visibility_off\" }}\n              </mat-icon>\n        </mat-form-field>\n      </mat-card-content>\n\n      <mat-card-actions>\n        <button type=\"submit\" id=\"login-btn\">Login</button>\n\n        <a (click)=\"navigateTo('sign-in')\">Sign In</a>\n      </mat-card-actions>\n\n    </form>\n    </mat-card>\n</section>\n"
+module.exports = "<div class=\"wrapper\">\n  <div class=\"container\">\n    <form [formGroup]=\"loginForm\" (ngSubmit)=\"login()\">\n      <mat-card>\n        <div class=\"form-shared\">\n          <mat-card-header class=\"d-flex flex-column text-center login-components-title\">\n            <h4 i18n class=\"font-weight-bold\">Welcome back Company X</h4>\n            <h6>Sign in to continue</h6>\n          </mat-card-header>\n\n          <mat-card-content>\n            <mat-form-field class=\"input-full-width\">\n              <label>\n                <input\n                  formControlName=\"username\"\n                  type=\"text\"\n                  matInput\n                  required\n                  placeholder=\"Enter your username\"\n                />\n              </label>\n            </mat-form-field>\n\n            <mat-form-field class=\"input-full-width\">\n              <label>\n                <input\n                  formControlName=\"password\"\n                  matInput\n                  required\n                  placeholder=\"Enter your password\"\n                  [type]=\"hidePassword ? 'password' : 'text'\"\n                />\n              </label>\n              <mat-icon matSuffix (click)=\"hidePassword = !hidePassword\"\n              >{{ hidePassword ? \"visibility\" : \"visibility_off\" }}\n              </mat-icon>\n            </mat-form-field>\n          </mat-card-content>\n          <mat-card-actions class=\"d-flex flex-column\">\n            <button i18n mat-raised-button color=\"primary\" type=\"submit\" id=\"login-btn\">\n              Login\n            </button>\n             <a class=\"text-center\" (click)=\"navigateTo('sign-in')\" i18n>Sign Up</a>\n          </mat-card-actions>\n        </div>\n        <app-error-messages [errors]=\"errors\"></app-error-messages>\n\n      </mat-card>\n    </form>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -85,7 +118,91 @@ module.exports = "<p>\n  nested-data works!\n</p>\n"
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<section id=\"sign-in-container\">\n\n    <section id=\"form-content\">\n  \n      <input type=\"text\" placeholder=\"Email\" value=\"\" />\n  \n      <input type=\"text\" placeholder=\"Password\" value=\"\">\n\n      <input type=\"text\" placeholder=\"Re-password\" value=\"\">\n  \n      <button type=\"submit\" id=\"login-btn\">Sign In</button>\n  \n      <a (click)=\"navigateTo('login')\">Sign In</a>\n  \n    </section>\n  \n  </section>"
+module.exports = "<form [formGroup]=\"signUpForm\" (ngSubmit)=\"signUp()\">\n  <mat-card>\n    <div class=\"form-shared\">\n      <mat-card-header>\n        <mat-card-header class=\"d-flex flex-column text-center\">\n          <h4 i18n class=\"font-weight-bold\">Company X Sign Up</h4>\n          <h6>Please enter a valid email address & create a password</h6>\n        </mat-card-header>\n      </mat-card-header>\n\n      <mat-card-content>\n        <!-- Email -->\n        <mat-form-field class=\"input-full-width\">\n          <label>\n            <input\n              formControlName=\"email\"\n              type=\"email\"\n              matInput\n              required\n              placeholder=\"Enter your email\"\n            />\n          </label>\n          <mat-error *ngIf=\"hasError('email', 'pattern')\" i18n\n            >Incorrect formatting</mat-error\n          >\n        </mat-form-field>\n        <!-- User name -->\n        <mat-form-field class=\"input-full-width\">\n          <label>\n            <input\n              formControlName=\"username\"\n              type=\"text\"\n              matInput\n              required\n              placeholder=\"Enter an username\"\n            />\n          </label>\n          <mat-error *ngIf=\"hasError('email', 'pattern')\" i18n\n            >Incorrect formatting</mat-error\n          >\n        </mat-form-field>\n\n        <!-- Enter New Password -->\n        <mat-form-field appearance=\"outline\" class=\"input-full-width\">\n          <mat-label i18n=\"@@ssp_newPassword\">New Password</mat-label>\n          <label>\n            <input\n              matInput\n              #passwordWithValidation\n              required\n              formControlName=\"password\"\n              placeholder=\"New Password\"\n              [type]=\"hidePassword ? 'password' : 'text'\"\n            />\n          </label>\n          <mat-icon matSuffix (click)=\"hidePassword = !hidePassword\"\n            >{{ hidePassword ? \"visibility\" : \"visibility_off\" }}\n          </mat-icon>\n        </mat-form-field>\n        <mat-password-strength\n          [password]=\"passwordWithValidation.value\"\n          (onStrengthChanged)=\"onStrengthChanged($event)\"\n        >\n        </mat-password-strength>\n        <!-- Password's strength info -->\n        <label *ngIf=\"passwordStrength > 1\" class=\"password-strength\" i18n\n          >Password Strength:\n          <span *ngIf=\"passwordStrength <= 20\" i18n=\"@@ssp_weak\">Weak</span>\n          <span\n            *ngIf=\"passwordStrength > 21 && passwordStrength <= 80\"\n            i18n=\"@@ssp_medium\"\n            >Medium</span\n          >\n          <span *ngIf=\"passwordStrength > 81\" i18n=\"@@ssp_strong\">Strong</span>\n        </label>\n        <!-- Confirm New Password -->\n        <mat-form-field\n          appearance=\"outline\"\n          class=\"input-full-width confirmPasswordInput\"\n        >\n          <mat-label i18n=\"@@ssp_confirmPassword\">Confirm Password</mat-label>\n          <label>\n            <input\n              matInput\n              formControlName=\"confirmPassword\"\n              required\n              placeholder=\"Confirm Password\"\n              [type]=\"hidePassword ? 'password' : 'text'\"\n            />\n          </label>\n          <mat-icon matSuffix (click)=\"hidePassword = !hidePassword\"\n            >{{ hidePassword ? \"visibility\" : \"visibility_off\" }}\n          </mat-icon>\n        </mat-form-field>\n      </mat-card-content>\n      <mat-card-actions class=\"d-flex flex-column\">\n        <button\n          i18n\n          mat-raised-button\n          color=\"primary\"\n          [disabled]=\"loading\"\n          type=\"submit\"\n        >\n          Create Account\n        </button>\n        <a class=\"text-center\" (click)=\"navigateTo('login')\">Login</a>\n      </mat-card-actions>\n    </div>\n    <app-error-messages [errors]=\"errors\"></app-error-messages>\n  </mat-card>\n</form>\n"
+
+/***/ }),
+
+/***/ "./src/app/_layout/app-layout/app-layout.component.scss":
+/*!**************************************************************!*\
+  !*** ./src/app/_layout/app-layout/app-layout.component.scss ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL19sYXlvdXQvYXBwLWxheW91dC9hcHAtbGF5b3V0LmNvbXBvbmVudC5zY3NzIn0= */"
+
+/***/ }),
+
+/***/ "./src/app/_layout/app-layout/app-layout.component.ts":
+/*!************************************************************!*\
+  !*** ./src/app/_layout/app-layout/app-layout.component.ts ***!
+  \************************************************************/
+/*! exports provided: AppLayoutComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AppLayoutComponent", function() { return AppLayoutComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+
+
+var AppLayoutComponent = /** @class */ (function () {
+    function AppLayoutComponent() {
+    }
+    AppLayoutComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: "app-app-layout",
+            template: __webpack_require__(/*! raw-loader!./app-layout.component.html */ "./node_modules/raw-loader/index.js!./src/app/_layout/app-layout/app-layout.component.html"),
+            styles: [__webpack_require__(/*! ./app-layout.component.scss */ "./src/app/_layout/app-layout/app-layout.component.scss")]
+        })
+    ], AppLayoutComponent);
+    return AppLayoutComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/_layout/pre-autehtication/pre-authentication.component.scss":
+/*!*****************************************************************************!*\
+  !*** ./src/app/_layout/pre-autehtication/pre-authentication.component.scss ***!
+  \*****************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ".page-wrapper {\n  margin-top: 5vh;\n  height: 100%;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9tZWdhbnJvb2svRlNMLUNvZGluZy1UZXN0L0ZTTC1BcHBsaWNhdGlvbi1Qcm9qZWN0L3NyYy9hcHAvX2xheW91dC9wcmUtYXV0ZWh0aWNhdGlvbi9wcmUtYXV0aGVudGljYXRpb24uY29tcG9uZW50LnNjc3MiLCJzcmMvYXBwL19sYXlvdXQvcHJlLWF1dGVodGljYXRpb24vcHJlLWF1dGhlbnRpY2F0aW9uLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsZUFBQTtFQUNBLFlBQUE7QUNDRiIsImZpbGUiOiJzcmMvYXBwL19sYXlvdXQvcHJlLWF1dGVodGljYXRpb24vcHJlLWF1dGhlbnRpY2F0aW9uLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLnBhZ2Utd3JhcHBlcntcbiAgbWFyZ2luLXRvcDogNXZoO1xuICBoZWlnaHQ6IDEwMCU7XG59XG4iLCIucGFnZS13cmFwcGVyIHtcbiAgbWFyZ2luLXRvcDogNXZoO1xuICBoZWlnaHQ6IDEwMCU7XG59Il19 */"
+
+/***/ }),
+
+/***/ "./src/app/_layout/pre-autehtication/pre-authentication.component.ts":
+/*!***************************************************************************!*\
+  !*** ./src/app/_layout/pre-autehtication/pre-authentication.component.ts ***!
+  \***************************************************************************/
+/*! exports provided: PreAuthenticationComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PreAuthenticationComponent", function() { return PreAuthenticationComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+
+
+var PreAuthenticationComponent = /** @class */ (function () {
+    function PreAuthenticationComponent() {
+    }
+    PreAuthenticationComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: "app-pre-authentication",
+            template: __webpack_require__(/*! raw-loader!./pre-authentication.component.html */ "./node_modules/raw-loader/index.js!./src/app/_layout/pre-autehtication/pre-authentication.component.html"),
+            styles: [__webpack_require__(/*! ./pre-authentication.component.scss */ "./src/app/_layout/pre-autehtication/pre-authentication.component.scss")]
+        })
+    ], PreAuthenticationComponent);
+    return PreAuthenticationComponent;
+}());
+
+
 
 /***/ }),
 
@@ -373,7 +490,7 @@ var ApiDataService = /** @class */ (function () {
 
 // Add to Description
 // 1. add to each request the Autorization tokenName
-// 2. edit page and url params - modifie the records for specific user.
+// 2. edit page and url params - modified the records for specific user.
 
 
 /***/ }),
@@ -395,6 +512,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _pages_sign_in_sign_in_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./pages/sign-in/sign-in.component */ "./src/app/pages/sign-in/sign-in.component.ts");
 /* harmony import */ var _pages_current_status_current_status_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./pages/current-status/current-status.component */ "./src/app/pages/current-status/current-status.component.ts");
 /* harmony import */ var _pages_nested_data_nested_data_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./pages/nested-data/nested-data.component */ "./src/app/pages/nested-data/nested-data.component.ts");
+/* harmony import */ var _layout_pre_autehtication_pre_authentication_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./_layout/pre-autehtication/pre-authentication.component */ "./src/app/_layout/pre-autehtication/pre-authentication.component.ts");
+/* harmony import */ var _layout_app_layout_app_layout_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./_layout/app-layout/app-layout.component */ "./src/app/_layout/app-layout/app-layout.component.ts");
+
+
 
 
 
@@ -403,12 +524,23 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var routes = [
-    { path: '', pathMatch: 'full', redirectTo: 'current-status' },
-    { path: 'login', component: _pages_log_in_log_in_component__WEBPACK_IMPORTED_MODULE_3__["LogInComponent"] },
-    { path: 'sign-in', component: _pages_sign_in_sign_in_component__WEBPACK_IMPORTED_MODULE_4__["SignInComponent"] },
-    { path: 'current-status', component: _pages_current_status_current_status_component__WEBPACK_IMPORTED_MODULE_5__["CurrentStatusComponent"] },
-    { path: 'nested-data', component: _pages_nested_data_nested_data_component__WEBPACK_IMPORTED_MODULE_6__["NestedDataComponent"] },
-    { path: '**', redirectTo: 'current-status' }
+    {
+        path: "",
+        component: _layout_pre_autehtication_pre_authentication_component__WEBPACK_IMPORTED_MODULE_7__["PreAuthenticationComponent"],
+        children: [
+            { path: "login", component: _pages_log_in_log_in_component__WEBPACK_IMPORTED_MODULE_3__["LogInComponent"] },
+            { path: "sign-in", component: _pages_sign_in_sign_in_component__WEBPACK_IMPORTED_MODULE_4__["SignInComponent"] },
+        ]
+    },
+    { path: "",
+        component: _layout_app_layout_app_layout_component__WEBPACK_IMPORTED_MODULE_8__["AppLayoutComponent"],
+        children: [
+            { path: "", pathMatch: "full", redirectTo: "current-status" },
+            { path: "current-status", component: _pages_current_status_current_status_component__WEBPACK_IMPORTED_MODULE_5__["CurrentStatusComponent"] },
+            { path: "nested-data", component: _pages_nested_data_nested_data_component__WEBPACK_IMPORTED_MODULE_6__["NestedDataComponent"] },
+            { path: "**", redirectTo: "current-status" }
+        ],
+    },
 ];
 var AppRoutingModule = /** @class */ (function () {
     function AppRoutingModule() {
@@ -433,7 +565,7 @@ var AppRoutingModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "#wrapper {\n  width: 100%;\n  height: 100%;\n  display: block;\n}\n#wrapper #header-wrapper {\n  width: 100%;\n  height: 6vh;\n  line-height: 6vh;\n  background: #2196f3;\n}\n#wrapper #body-wrapper {\n  width: 90%;\n  height: 94vh;\n  margin: 0 auto;\n  margin-top: 20px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL21lZ2Fuci9GU0wvRlNMLUFwcGxpY2F0aW9uLVByb2plY3Qvc3JjL2FwcC9hcHAuY29tcG9uZW50LnNjc3MiLCJzcmMvYXBwL2FwcC5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLFdBQUE7RUFDQSxZQUFBO0VBQ0EsY0FBQTtBQ0NKO0FEQ0k7RUFDSSxXQUFBO0VBQ0EsV0FBQTtFQUNBLGdCQUFBO0VBQ0EsbUJBQUE7QUNDUjtBREVJO0VBQ0ksVUFBQTtFQUNBLFlBQUE7RUFDQSxjQUFBO0VBQ0EsZ0JBQUE7QUNBUiIsImZpbGUiOiJzcmMvYXBwL2FwcC5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIiN3cmFwcGVyIHtcclxuICAgIHdpZHRoOiAxMDAlO1xyXG4gICAgaGVpZ2h0OiAxMDAlO1xyXG4gICAgZGlzcGxheTogYmxvY2s7XHJcblxyXG4gICAgI2hlYWRlci13cmFwcGVyIHtcclxuICAgICAgICB3aWR0aDogMTAwJTtcclxuICAgICAgICBoZWlnaHQ6IDZ2aDtcclxuICAgICAgICBsaW5lLWhlaWdodDogNnZoO1xyXG4gICAgICAgIGJhY2tncm91bmQ6ICMyMTk2ZjM7XHJcbiAgICB9XHJcblxyXG4gICAgI2JvZHktd3JhcHBlciB7XHJcbiAgICAgICAgd2lkdGg6IDkwJTtcclxuICAgICAgICBoZWlnaHQ6IDk0dmg7XHJcbiAgICAgICAgbWFyZ2luOiAwIGF1dG87XHJcbiAgICAgICAgbWFyZ2luLXRvcDogMjBweDtcclxuICAgIH1cclxufSIsIiN3cmFwcGVyIHtcbiAgd2lkdGg6IDEwMCU7XG4gIGhlaWdodDogMTAwJTtcbiAgZGlzcGxheTogYmxvY2s7XG59XG4jd3JhcHBlciAjaGVhZGVyLXdyYXBwZXIge1xuICB3aWR0aDogMTAwJTtcbiAgaGVpZ2h0OiA2dmg7XG4gIGxpbmUtaGVpZ2h0OiA2dmg7XG4gIGJhY2tncm91bmQ6ICMyMTk2ZjM7XG59XG4jd3JhcHBlciAjYm9keS13cmFwcGVyIHtcbiAgd2lkdGg6IDkwJTtcbiAgaGVpZ2h0OiA5NHZoO1xuICBtYXJnaW46IDAgYXV0bztcbiAgbWFyZ2luLXRvcDogMjBweDtcbn0iXX0= */"
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2FwcC5jb21wb25lbnQuc2NzcyJ9 */"
 
 /***/ }),
 
@@ -456,10 +588,10 @@ __webpack_require__.r(__webpack_exports__);
 var AppComponent = /** @class */ (function () {
     function AppComponent(api) {
         this.api = api;
-        this.title = "Angular-Task";
+        this.title = "Company X";
     }
     AppComponent.prototype.ngOnInit = function () {
-        this.api.apiData().subscribe(function (data) { return console.log("API Data => ", data); });
+        // this.api.apiData().subscribe(data => console.log("API Data => ", data));
     };
     AppComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -472,6 +604,10 @@ var AppComponent = /** @class */ (function () {
     return AppComponent;
 }());
 
+/*
+* TODO: if a user is created and there is no data, show dialog or something
+*       saying 'u have no data yet' etc eg userID 4 +
+* */
 
 
 /***/ }),
@@ -489,19 +625,27 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm5/platform-browser.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var angular_in_memory_web_api__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! angular-in-memory-web-api */ "./node_modules/angular-in-memory-web-api/index.js");
-/* harmony import */ var _api_data_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./api-data.service */ "./src/app/api-data.service.ts");
-/* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./app-routing.module */ "./src/app/app-routing.module.ts");
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
-/* harmony import */ var _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/platform-browser/animations */ "./node_modules/@angular/platform-browser/fesm5/animations.js");
-/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
-/* harmony import */ var _pages_log_in_log_in_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./pages/log-in/log-in.component */ "./src/app/pages/log-in/log-in.component.ts");
-/* harmony import */ var _pages_sign_in_sign_in_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./pages/sign-in/sign-in.component */ "./src/app/pages/sign-in/sign-in.component.ts");
-/* harmony import */ var _pages_current_status_current_status_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./pages/current-status/current-status.component */ "./src/app/pages/current-status/current-status.component.ts");
-/* harmony import */ var _pages_nested_data_nested_data_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./pages/nested-data/nested-data.component */ "./src/app/pages/nested-data/nested-data.component.ts");
-/* harmony import */ var _components_header_header_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/header/header.component */ "./src/app/components/header/header.component.ts");
-/* harmony import */ var _shared_material_modules__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./shared/material.modules */ "./src/app/shared/material.modules.ts");
+/* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./app-routing.module */ "./src/app/app-routing.module.ts");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/platform-browser/animations */ "./node_modules/@angular/platform-browser/fesm5/animations.js");
+/* harmony import */ var _angular_material_extensions_password_strength__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular-material-extensions/password-strength */ "./node_modules/@angular-material-extensions/password-strength/esm5/password-strength.es5.js");
+/* harmony import */ var angular_in_memory_web_api__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! angular-in-memory-web-api */ "./node_modules/angular-in-memory-web-api/index.js");
+/* harmony import */ var _api_data_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./api-data.service */ "./src/app/api-data.service.ts");
+/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
+/* harmony import */ var _pages_log_in_log_in_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./pages/log-in/log-in.component */ "./src/app/pages/log-in/log-in.component.ts");
+/* harmony import */ var _pages_sign_in_sign_in_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./pages/sign-in/sign-in.component */ "./src/app/pages/sign-in/sign-in.component.ts");
+/* harmony import */ var _pages_current_status_current_status_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./pages/current-status/current-status.component */ "./src/app/pages/current-status/current-status.component.ts");
+/* harmony import */ var _pages_nested_data_nested_data_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./pages/nested-data/nested-data.component */ "./src/app/pages/nested-data/nested-data.component.ts");
+/* harmony import */ var _components_header_header_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/header/header.component */ "./src/app/components/header/header.component.ts");
+/* harmony import */ var _shared_material_modules__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./shared/material.modules */ "./src/app/shared/material.modules.ts");
+/* harmony import */ var _components_error_messages_error_messages_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./components/error-messages/error-messages.component */ "./src/app/components/error-messages/error-messages.component.ts");
+/* harmony import */ var _layout_pre_autehtication_pre_authentication_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./_layout/pre-autehtication/pre-authentication.component */ "./src/app/_layout/pre-autehtication/pre-authentication.component.ts");
+/* harmony import */ var _layout_app_layout_app_layout_component__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./_layout/app-layout/app-layout.component */ "./src/app/_layout/app-layout/app-layout.component.ts");
+
+
+
+
 
 
 
@@ -524,28 +668,82 @@ var AppModule = /** @class */ (function () {
     AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["NgModule"])({
             declarations: [
-                _app_component__WEBPACK_IMPORTED_MODULE_9__["AppComponent"],
-                _pages_log_in_log_in_component__WEBPACK_IMPORTED_MODULE_10__["LogInComponent"],
-                _pages_sign_in_sign_in_component__WEBPACK_IMPORTED_MODULE_11__["SignInComponent"],
-                _pages_current_status_current_status_component__WEBPACK_IMPORTED_MODULE_12__["CurrentStatusComponent"],
-                _pages_nested_data_nested_data_component__WEBPACK_IMPORTED_MODULE_13__["NestedDataComponent"],
-                _components_header_header_component__WEBPACK_IMPORTED_MODULE_14__["HeaderComponent"]
+                _app_component__WEBPACK_IMPORTED_MODULE_10__["AppComponent"],
+                _pages_log_in_log_in_component__WEBPACK_IMPORTED_MODULE_11__["LogInComponent"],
+                _pages_sign_in_sign_in_component__WEBPACK_IMPORTED_MODULE_12__["SignInComponent"],
+                _pages_current_status_current_status_component__WEBPACK_IMPORTED_MODULE_13__["CurrentStatusComponent"],
+                _pages_nested_data_nested_data_component__WEBPACK_IMPORTED_MODULE_14__["NestedDataComponent"],
+                _components_header_header_component__WEBPACK_IMPORTED_MODULE_15__["HeaderComponent"],
+                _components_error_messages_error_messages_component__WEBPACK_IMPORTED_MODULE_17__["ErrorMessagesComponent"],
+                _layout_pre_autehtication_pre_authentication_component__WEBPACK_IMPORTED_MODULE_18__["PreAuthenticationComponent"],
+                _layout_app_layout_app_layout_component__WEBPACK_IMPORTED_MODULE_19__["AppLayoutComponent"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
-                _angular_forms__WEBPACK_IMPORTED_MODULE_7__["FormsModule"],
-                _app_routing_module__WEBPACK_IMPORTED_MODULE_5__["AppRoutingModule"],
-                _angular_common_http__WEBPACK_IMPORTED_MODULE_6__["HttpClientModule"],
-                _angular_forms__WEBPACK_IMPORTED_MODULE_7__["ReactiveFormsModule"],
-                _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_8__["BrowserAnimationsModule"],
-                angular_in_memory_web_api__WEBPACK_IMPORTED_MODULE_3__["InMemoryWebApiModule"].forRoot(_api_data_service__WEBPACK_IMPORTED_MODULE_4__["ApiDataService"]),
-                _shared_material_modules__WEBPACK_IMPORTED_MODULE_15__["MaterialModule"],
+                _angular_forms__WEBPACK_IMPORTED_MODULE_5__["FormsModule"],
+                _app_routing_module__WEBPACK_IMPORTED_MODULE_3__["AppRoutingModule"],
+                _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClientModule"],
+                _angular_forms__WEBPACK_IMPORTED_MODULE_5__["ReactiveFormsModule"],
+                _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_6__["BrowserAnimationsModule"],
+                angular_in_memory_web_api__WEBPACK_IMPORTED_MODULE_8__["InMemoryWebApiModule"].forRoot(_api_data_service__WEBPACK_IMPORTED_MODULE_9__["ApiDataService"]),
+                _shared_material_modules__WEBPACK_IMPORTED_MODULE_16__["MaterialModule"],
+                _angular_material_extensions_password_strength__WEBPACK_IMPORTED_MODULE_7__["MatPasswordStrengthModule"],
             ],
             providers: [],
-            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_9__["AppComponent"]]
+            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_10__["AppComponent"]]
         })
     ], AppModule);
     return AppModule;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/components/error-messages/error-messages.component.scss":
+/*!*************************************************************************!*\
+  !*** ./src/app/components/error-messages/error-messages.component.scss ***!
+  \*************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2NvbXBvbmVudHMvZXJyb3ItbWVzc2FnZXMvZXJyb3ItbWVzc2FnZXMuY29tcG9uZW50LnNjc3MifQ== */"
+
+/***/ }),
+
+/***/ "./src/app/components/error-messages/error-messages.component.ts":
+/*!***********************************************************************!*\
+  !*** ./src/app/components/error-messages/error-messages.component.ts ***!
+  \***********************************************************************/
+/*! exports provided: ErrorMessagesComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ErrorMessagesComponent", function() { return ErrorMessagesComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _shared_types__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../shared/types */ "./src/app/shared/types.ts");
+
+
+
+var ErrorMessagesComponent = /** @class */ (function () {
+    function ErrorMessagesComponent() {
+        this.errors = [];
+        this.errorType = _shared_types__WEBPACK_IMPORTED_MODULE_2__["ErrorType"];
+    }
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Array)
+    ], ErrorMessagesComponent.prototype, "errors", void 0);
+    ErrorMessagesComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: "app-error-messages",
+            template: __webpack_require__(/*! raw-loader!./error-messages.component.html */ "./node_modules/raw-loader/index.js!./src/app/components/error-messages/error-messages.component.html"),
+            styles: [__webpack_require__(/*! ./error-messages.component.scss */ "./src/app/components/error-messages/error-messages.component.scss")]
+        })
+    ], ErrorMessagesComponent);
+    return ErrorMessagesComponent;
 }());
 
 
@@ -559,7 +757,7 @@ var AppModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".page-links {\n  margin: 10px 15px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL21lZ2Fuci9GU0wvRlNMLUFwcGxpY2F0aW9uLVByb2plY3Qvc3JjL2FwcC9jb21wb25lbnRzL2hlYWRlci9oZWFkZXIuY29tcG9uZW50LnNjc3MiLCJzcmMvYXBwL2NvbXBvbmVudHMvaGVhZGVyL2hlYWRlci5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLGlCQUFBO0FDQ0oiLCJmaWxlIjoic3JjL2FwcC9jb21wb25lbnRzL2hlYWRlci9oZWFkZXIuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIucGFnZS1saW5rcyB7XHJcbiAgICBtYXJnaW46IDEwcHggMTVweDtcclxufSIsIi5wYWdlLWxpbmtzIHtcbiAgbWFyZ2luOiAxMHB4IDE1cHg7XG59Il19 */"
+module.exports = ".page-links {\n  margin: 10px 15px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9tZWdhbnJvb2svRlNMLUNvZGluZy1UZXN0L0ZTTC1BcHBsaWNhdGlvbi1Qcm9qZWN0L3NyYy9hcHAvY29tcG9uZW50cy9oZWFkZXIvaGVhZGVyLmNvbXBvbmVudC5zY3NzIiwic3JjL2FwcC9jb21wb25lbnRzL2hlYWRlci9oZWFkZXIuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSxpQkFBQTtBQ0NKIiwiZmlsZSI6InNyYy9hcHAvY29tcG9uZW50cy9oZWFkZXIvaGVhZGVyLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLnBhZ2UtbGlua3Mge1xyXG4gICAgbWFyZ2luOiAxMHB4IDE1cHg7XHJcbn0iLCIucGFnZS1saW5rcyB7XG4gIG1hcmdpbjogMTBweCAxNXB4O1xufSJdfQ== */"
 
 /***/ }),
 
@@ -681,8 +879,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LogInComponent", function() { return LogInComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var src_app_services_datastore_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/services/datastore.service */ "./src/app/services/datastore.service.ts");
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var src_app_services_datastore_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/services/datastore.service */ "./src/app/services/datastore.service.ts");
+/* harmony import */ var _shared_types__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../shared/types */ "./src/app/shared/types.ts");
+
 
 
 
@@ -690,26 +890,40 @@ __webpack_require__.r(__webpack_exports__);
 var LogInComponent = /** @class */ (function () {
     function LogInComponent(dataStore) {
         this.dataStore = dataStore;
-        this.loginForm = new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormGroup"]({
-            username: new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"]("", [_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required]),
-            password: new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"]("", [_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required]),
+        this.loginForm = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormGroup"]({
+            username: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]("", [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]),
+            password: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]("", [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required])
         });
         this.hidePassword = true;
+        this.errorType = _shared_types__WEBPACK_IMPORTED_MODULE_4__["ErrorType"];
+        this.errors = [];
+        this.loading = false;
     }
     /* Page Tasks:
      *
      *  1) Take and validate the user input fields
      *  2) Connect with API
-     *  3) Display the necessary error messages
-     *  4) Style the page
-     *  5) Header should`t be visible for this page
      *
      */
-    LogInComponent.prototype.ngOnInit = function () { };
     LogInComponent.prototype.navigateTo = function (page) {
         this.dataStore.navigateTo(page);
     };
     LogInComponent.prototype.login = function () {
+        this.errors = [];
+        if (!this.loginForm.valid) {
+            this.errors.push(_shared_types__WEBPACK_IMPORTED_MODULE_4__["ErrorType"].Validation);
+            return;
+        }
+        this.loading = true;
+        // subscription
+        this._subscription = this.dataStore.getUser().subscribe(function (user) {
+            console.log(user);
+        });
+    };
+    LogInComponent.prototype.ngOnDestroy = function () {
+        if (this._subscription) {
+            this._subscription.unsubscribe();
+        }
     };
     LogInComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -717,7 +931,7 @@ var LogInComponent = /** @class */ (function () {
             template: __webpack_require__(/*! raw-loader!./log-in.component.html */ "./node_modules/raw-loader/index.js!./src/app/pages/log-in/log-in.component.html"),
             styles: [__webpack_require__(/*! ./log-in.component.scss */ "./src/app/pages/log-in/log-in.component.scss")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_services_datastore_service__WEBPACK_IMPORTED_MODULE_2__["DatastoreService"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_services_datastore_service__WEBPACK_IMPORTED_MODULE_3__["DatastoreService"]])
     ], LogInComponent);
     return LogInComponent;
 }());
@@ -815,7 +1029,7 @@ var NestedDataComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3BhZ2VzL3NpZ24taW4vc2lnbi1pbi5jb21wb25lbnQuc2NzcyJ9 */"
+module.exports = ".form-shared mat-card-content .password-strength {\n  padding-top: 15px;\n  font-size: 16px;\n}\n.form-shared mat-card-content .password-strength span {\n  font-weight: bolder;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9tZWdhbnJvb2svRlNMLUNvZGluZy1UZXN0L0ZTTC1BcHBsaWNhdGlvbi1Qcm9qZWN0L3NyYy9hcHAvcGFnZXMvc2lnbi1pbi9zaWduLWluLmNvbXBvbmVudC5zY3NzIiwic3JjL2FwcC9wYWdlcy9zaWduLWluL3NpZ24taW4uY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBRU07RUFDRSxpQkFBQTtFQUNBLGVBQUE7QUNEUjtBREVRO0VBQ0UsbUJBQUE7QUNBViIsImZpbGUiOiJzcmMvYXBwL3BhZ2VzL3NpZ24taW4vc2lnbi1pbi5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIi5mb3JtLXNoYXJlZHtcbiAgbWF0LWNhcmQtY29udGVudCB7XG4gICAgICAucGFzc3dvcmQtc3RyZW5ndGgge1xuICAgICAgICBwYWRkaW5nLXRvcDogMTVweDtcbiAgICAgICAgZm9udC1zaXplOiAxNnB4O1xuICAgICAgICBzcGFuIHtcbiAgICAgICAgICBmb250LXdlaWdodDogYm9sZGVyO1xuICAgICAgICB9XG4gICAgfVxuICB9XG59XG4iLCIuZm9ybS1zaGFyZWQgbWF0LWNhcmQtY29udGVudCAucGFzc3dvcmQtc3RyZW5ndGgge1xuICBwYWRkaW5nLXRvcDogMTVweDtcbiAgZm9udC1zaXplOiAxNnB4O1xufVxuLmZvcm0tc2hhcmVkIG1hdC1jYXJkLWNvbnRlbnQgLnBhc3N3b3JkLXN0cmVuZ3RoIHNwYW4ge1xuICBmb250LXdlaWdodDogYm9sZGVyO1xufSJdfQ== */"
 
 /***/ }),
 
@@ -831,29 +1045,73 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SignInComponent", function() { return SignInComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var src_app_services_datastore_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/services/datastore.service */ "./src/app/services/datastore.service.ts");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var src_app_services_datastore_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/services/datastore.service */ "./src/app/services/datastore.service.ts");
+/* harmony import */ var _shared_types__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../shared/types */ "./src/app/shared/types.ts");
+
+
 
 
 
 var SignInComponent = /** @class */ (function () {
-    function SignInComponent(datastore) {
-        this.datastore = datastore;
+    function SignInComponent(dataStore) {
+        this.dataStore = dataStore;
+        this.hidePassword = true;
+        this.errorType = _shared_types__WEBPACK_IMPORTED_MODULE_4__["ErrorType"];
+        this.loading = false;
+        this.signUpForm = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormGroup"]({
+            email: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]("", _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].compose([
+                _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required,
+                _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].pattern("^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$"),
+            ])),
+            username: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](),
+            password: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](),
+            confirmPassword: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](),
+        });
     }
-    /* Page Tasks:
-     *  1) Take and validate the user input fields;
-     *  2) Connect with API;
-     *  3) Display the necessary error messages
-     *  4) Style the page
-     *  5) Header should`t be visible for this page;
-     *
-     */
-    SignInComponent.prototype.ngOnInit = function () {
-        this.datastore
-            .getUser()
-            .subscribe(function (data) { return console.log("user data => ", data); });
-    };
     SignInComponent.prototype.navigateTo = function (page) {
-        this.datastore.navigateTo(page);
+        this.dataStore.navigateTo(page);
+    };
+    SignInComponent.prototype.signUp = function () {
+        this.errors = [];
+        if (!this.signUpForm.valid) {
+            this.errors.push(_shared_types__WEBPACK_IMPORTED_MODULE_4__["ErrorType"].Validation);
+            return;
+        }
+        this.loading = true;
+        this.dataStore.createUser(this._formToUserObject());
+        console.log(this._allUsers);
+    };
+    SignInComponent.prototype.hasError = function (controlName, errorName) {
+        return this.signUpForm.controls[controlName].hasError(errorName);
+    };
+    SignInComponent.prototype.onStrengthChanged = function (strength) {
+        this.passwordStrength = strength;
+    };
+    SignInComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this._subscription = this.dataStore.getUser().subscribe(function (users) {
+            _this._allUsers = users;
+            console.log(_this._allUsers);
+        });
+    };
+    SignInComponent.prototype.ngOnDestroy = function () {
+        if (this._subscription) {
+            this._subscription.unsubscribe();
+        }
+    };
+    SignInComponent.prototype._generateUserId = function () {
+        var l = this._allUsers.length;
+        return this._allUsers[l - 1].userId + 1;
+    };
+    SignInComponent.prototype._formToUserObject = function () {
+        var newUser = {
+            userId: this._generateUserId(),
+            username: this.signUpForm.get("username").value,
+            password: this.signUpForm.get("password").value,
+            email: this.signUpForm.get("email").value,
+        };
+        return newUser;
     };
     SignInComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -861,7 +1119,7 @@ var SignInComponent = /** @class */ (function () {
             template: __webpack_require__(/*! raw-loader!./sign-in.component.html */ "./node_modules/raw-loader/index.js!./src/app/pages/sign-in/sign-in.component.html"),
             styles: [__webpack_require__(/*! ./sign-in.component.scss */ "./src/app/pages/sign-in/sign-in.component.scss")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_services_datastore_service__WEBPACK_IMPORTED_MODULE_2__["DatastoreService"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_services_datastore_service__WEBPACK_IMPORTED_MODULE_3__["DatastoreService"]])
     ], SignInComponent);
     return SignInComponent;
 }());
@@ -907,6 +1165,10 @@ var DatastoreService = /** @class */ (function () {
     };
     DatastoreService.prototype.getPoliciesDetails = function () {
         return this.http.get(this.SERVER_URL + "policiesDetails");
+    };
+    DatastoreService.prototype.createUser = function (user) {
+        console.log("createUser", user);
+        return this.http.post("" + (this.SERVER_URL + "auth"), user);
     };
     // Only for Demo purposes
     DatastoreService.prototype.apiData = function () {
@@ -964,6 +1226,28 @@ var MaterialModule = /** @class */ (function () {
     return MaterialModule;
 }());
 
+
+
+/***/ }),
+
+/***/ "./src/app/shared/types.ts":
+/*!*********************************!*\
+  !*** ./src/app/shared/types.ts ***!
+  \*********************************/
+/*! exports provided: ErrorType */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ErrorType", function() { return ErrorType; });
+var ErrorType;
+(function (ErrorType) {
+    ErrorType["Failed"] = "failed";
+    ErrorType["Disabled"] = "disabled";
+    ErrorType["Network"] = "network";
+    ErrorType["Unknown"] = "unknown";
+    ErrorType["Validation"] = "validation";
+})(ErrorType || (ErrorType = {}));
 
 
 /***/ }),
@@ -1032,7 +1316,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/meganr/FSL/FSL-Application-Project/src/main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! /Users/meganrook/FSL-Coding-Test/FSL-Application-Project/src/main.ts */"./src/main.ts");
 
 
 /***/ })

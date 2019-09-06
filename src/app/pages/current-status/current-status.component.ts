@@ -1,30 +1,42 @@
-import { Component, OnInit } from '@angular/core';
-import { DatastoreService } from 'src/app/services/datastore.service';
+import { Component, OnDestroy, OnInit } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
+import { Subscription } from "rxjs";
+import _ from "lodash";
+
+import { DatastoreService } from "src/app/services/datastore.service";
+import { policiesI } from "../../app.models";
+import {fadeIn} from "../../animations";
 
 @Component({
-  selector: 'app-current-status',
-  templateUrl: './current-status.component.html',
-  styleUrls: ['./current-status.component.scss']
+  selector: "app-current-status",
+  templateUrl: "./current-status.component.html",
+  styleUrls: ["./current-status.component.scss"],
+  animations: [fadeIn]
 })
-export class CurrentStatusComponent implements OnInit {
+export class CurrentStatusComponent implements OnInit, OnDestroy {
+  public policies: policiesI[] = [];
+  private _subscription: Subscription;
 
   constructor(
-    private api: DatastoreService
+    private _api: DatastoreService,
+    private _activatedRoute: ActivatedRoute
   ) {}
 
-  /* Page Tasks:
-   *
-   *  1) Connect and take the data from the API - use getPolicies function to retrieve the data
-   *  2) Create one layer table witch will display the income data
-   *  3) Table must contain the following columns: 
-   * 
-   *    ==> num, amount, description
-   * 
-   *  3) Style the page;
-   *  4) Header must be vissible for this page;
-   * 
-   */
+  ngOnInit() {
+    // TODO - method slow, as pulling in all policies rather than policies related to userId
 
-  ngOnInit() { }
+    this._subscription = this._api
+      .getPolicies()
+      .subscribe((policies: policiesI[]) => {
+        this.policies = _.filter(policies, {
+          userId: parseInt(this._activatedRoute.snapshot.paramMap.get("userId"))
+        });
+      });
+  }
 
+  ngOnDestroy() {
+    if (this._subscription) {
+      this._subscription.unsubscribe();
+    }
+  }
 }

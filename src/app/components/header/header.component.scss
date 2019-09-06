@@ -1,3 +1,18 @@
-.page-links {
-    margin: 10px 15px;
+section {
+    width: 100%;
+    background: #3f51b5;
+    color: #fff;
+    margin-bottom: 3em;
+    nav{
+      padding: 8px 16px;
+        .page-links {
+            margin: 10px 15px;
+        }
+    }
+    .logout-button{
+        p{
+            margin: 0;
+            padding: 0;
+        }
+    }
 }

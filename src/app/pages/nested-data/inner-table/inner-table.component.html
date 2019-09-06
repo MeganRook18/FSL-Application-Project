@@ -1,0 +1,19 @@
+<table *ngIf="details.length !== 0" class="table table-trapped table-bordered text-center">
+  <thead>
+    <tr>
+      <th scope="col" i18n>Client Name</th>
+      <th scope="col" i18n>Amount</th>
+    </tr>
+  </thead>
+  <tbody *ngFor="let value of details">
+    <tr>
+      <td>
+        {{ value.clientName }}
+      </td>
+      <td>
+        {{ value.amount }}
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h6 *ngIf="details.length === 0">No Policies Details</h6>

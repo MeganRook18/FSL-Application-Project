@@ -1,0 +1,11 @@
+.form-shared{
+  mat-card-content {
+      .password-strength {
+        padding-top: 15px;
+        font-size: 16px;
+        span {
+          font-weight: bolder;
+        }
+    }
+  }
+}

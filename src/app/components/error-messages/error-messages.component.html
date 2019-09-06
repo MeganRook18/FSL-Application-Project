@@ -1,0 +1,19 @@
+<div class="text-center">
+<ng-container *ngFor="let error of errors">
+  <ng-container [ngSwitch]="error">
+    <mat-error *ngSwitchCase="errorType.Validation">
+       <span i18n>Please enter your login credentials</span>
+    </mat-error>
+    <mat-error *ngSwitchCase="errorType.Failed">
+       <span i18n>Login details not recognised</span>
+    </mat-error>
+    <mat-error i18n *ngSwitchCase="errorType.Network"
+    >A communication problem occurred, please speak to Company X support if you believe this is
+      in error
+    </mat-error>
+    <mat-error  *ngSwitchCase="errorType.Unknown" i18n
+    >An unknown error occurred, please contact Company X support
+    </mat-error>
+  </ng-container>
+</ng-container>
+</div>

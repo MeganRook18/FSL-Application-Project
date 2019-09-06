@@ -1,13 +1,22 @@
-<section id="header-container">
-  <section id="navigation-container">
-    <div class="navigation-container">
-      <nav>
-        <a class="page-links" *ngFor="let link of routeLinks; let i = index" id="{{link.link}}" [routerLink]="link.link"
-          routerLinkActive #rla="routerLinkActive">
-          {{link.label}}
-        </a>
-      </nav>
-    </div>
-
-  </section>
+<section class="d-flex flex-row justify-content-between">
+  <nav>
+    <button mat-button>Company X</button>
+    <button
+      class="page-links"
+      *ngFor="let link of routeLinks; let i = index"
+      id="{{ link.link }}"
+      [routerLink]="link.link"
+      routerLinkActive
+      mat-button
+      #rla="routerLinkActive"
+    >
+      {{ link.label }}
+    </button>
+  </nav>
+  <div class="logout-button d-flex flex-row align-items-center">
+    <p>USER NAME</p>
+    <button mat-button>
+      <mat-icon>exit_to_app</mat-icon>
+    </button>
+  </div>
 </section>

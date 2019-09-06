@@ -2,7 +2,7 @@
   <div class="container">
     <form [formGroup]="loginForm" (ngSubmit)="login()">
       <mat-card>
-        <div class="login-form">
+        <div class="form-shared">
           <mat-card-header class="d-flex flex-column text-center login-components-title">
             <h4 i18n class="font-weight-bold">Welcome back Company X</h4>
             <h6>Sign in to continue</h6>
@@ -10,25 +10,27 @@
 
           <mat-card-content>
             <mat-form-field class="input-full-width">
-              <input
-                formControlName="username"
-                type="text"
-                matInput
-                required
-                i18n-placeholder
-                placeholder="Enter your username"
-              />
+              <label>
+                <input
+                  formControlName="username"
+                  type="text"
+                  matInput
+                  required
+                  placeholder="Enter your username"
+                />
+              </label>
             </mat-form-field>
 
             <mat-form-field class="input-full-width">
-              <input
-                formControlName="password"
-                matInput
-                required
-                i18n-placeholder
-                placeholder="Enter your password"
-                [type]="hidePassword ? 'password' : 'text'"
-              />
+              <label>
+                <input
+                  formControlName="password"
+                  matInput
+                  required
+                  placeholder="Enter your password"
+                  [type]="hidePassword ? 'password' : 'text'"
+                />
+              </label>
               <mat-icon matSuffix (click)="hidePassword = !hidePassword"
               >{{ hidePassword ? "visibility" : "visibility_off" }}
               </mat-icon>
@@ -38,9 +40,10 @@
             <button i18n mat-raised-button color="primary" type="submit" id="login-btn">
               Login
             </button>
-             <a class="text-center" (click)="navigateTo('sign-in')" i18n>Sign In</a>
+             <a class="text-center" (click)="navigateTo('sign-in')" i18n>Sign Up</a>
           </mat-card-actions>
         </div>
+        <app-error-messages [errors]="errors"></app-error-messages>
 
       </mat-card>
     </form>

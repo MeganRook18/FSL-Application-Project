@@ -1,16 +1,19 @@
-import { Component, OnDestroy } from "@angular/core";
+import {Component, OnDestroy, OnInit} from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { Subscription } from "rxjs";
 
 import { DatastoreService } from "src/app/services/datastore.service";
 import { ErrorType } from "../../shared/types";
+import {AuthenticationService} from "../../services/authentication.serivce";
+import {ActivatedRoute, Router} from "@angular/router";
+import {first} from "rxjs/operators";
 
 @Component({
   selector: "app-log-in",
   templateUrl: "./log-in.component.html",
   styleUrls: ["./log-in.component.scss"]
 })
-export class LogInComponent implements OnDestroy {
+export class LogInComponent implements OnInit, OnDestroy {
   public loginForm = new FormGroup({
     username: new FormControl("", [Validators.required]),
     password: new FormControl("", [Validators.required])
@@ -19,18 +22,30 @@ export class LogInComponent implements OnDestroy {
   public errorType = ErrorType;
   public errors: ErrorType[] = [];
   public loading = false;
-  private _subscription: Subscription;
-  constructor(private dataStore: DatastoreService) {}
+  public returnUrl: string;
 
-  /* Page Tasks:
-   *
-   *  1) Take and validate the user input fields
-   *  2) Connect with API
-   *
-   */
+  private _subscription: Subscription;
+
+  constructor(
+      private dataStore: DatastoreService,
+      private authenticationService: AuthenticationService,
+      private route: ActivatedRoute,
+      private router: Router,
+  ) {}
+
   navigateTo(page: string) {
     this.dataStore.navigateTo(page);
   }
+
+  ngOnInit() {
+    // reset login status
+    this.authenticationService.logout();
+    // get return url from route parameters or default to '/'
+    this.returnUrl = this.route.snapshot.queryParams.returnUrl || "/";
+  }
+
+  // easy access to form fields
+  get f() { return this.loginForm.controls; }
 
   public login() {
     this.errors = [];
@@ -40,11 +55,19 @@ export class LogInComponent implements OnDestroy {
       return;
     }
     this.loading = true;
-    // subscription
-    this._subscription = this.dataStore.getUser().subscribe(
-        user => {
-          console.log(user);
-        });
+
+    this._subscription = this.authenticationService.login(this.f.username.value, this.f.password.value)
+        .pipe(first())
+        .subscribe(
+            data => {
+              console.log("success", data);
+              this.router.navigate([this.returnUrl]);
+            },
+            error => {
+              console.log("error", error);
+              this.errors.push(error);
+              this.loading = false;
+            });
   }
 
     ngOnDestroy(): void {

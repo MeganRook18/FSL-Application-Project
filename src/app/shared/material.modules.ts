@@ -5,8 +5,9 @@ import {
   MatOptionModule,
   MatSelectModule,
   MatInputModule,
-  MatButtonModule, MatTableModule, MatIconModule
+  MatButtonModule, MatTableModule, MatIconModule, MatMenuModule
 } from "@angular/material";
+import {MatPasswordStrengthModule} from "@angular-material-extensions/password-strength";
 
 @NgModule({
   exports: [
@@ -18,6 +19,8 @@ import {
     MatButtonModule,
     MatTableModule,
     MatIconModule,
+    MatPasswordStrengthModule,
+    MatMenuModule,
   ]
 })
 export class MaterialModule {}

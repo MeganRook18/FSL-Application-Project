@@ -4,7 +4,7 @@
       <mat-card-header>
         <mat-card-header class="d-flex flex-column text-center">
           <h4 i18n class="font-weight-bold">Company X Sign Up</h4>
-          <h6>Please enter a valid email address & create a password</h6>
+          <h6 i18n>Please enter a valid email address & create a password</h6>
         </mat-card-header>
       </mat-card-header>
 
@@ -42,7 +42,7 @@
 
         <!-- Enter New Password -->
         <mat-form-field appearance="outline" class="input-full-width">
-          <mat-label i18n="@@ssp_newPassword">New Password</mat-label>
+          <mat-label i18n>New Password</mat-label>
           <label>
             <input
               matInput
@@ -65,12 +65,10 @@
         <!-- Password's strength info -->
         <label *ngIf="passwordStrength > 1" class="password-strength" i18n
           >Password Strength:
-          <span *ngIf="passwordStrength <= 20" i18n="@@ssp_weak">Weak</span>
+          <span *ngIf="passwordStrength <= 20" i18n>Weak</span>
           <span
             *ngIf="passwordStrength > 21 && passwordStrength <= 80"
-            i18n="@@ssp_medium"
-            >Medium</span
-          >
+            i18n>Medium</span>
           <span *ngIf="passwordStrength > 81" i18n="@@ssp_strong">Strong</span>
         </label>
         <!-- Confirm New Password -->
@@ -78,7 +76,7 @@
           appearance="outline"
           class="input-full-width confirmPasswordInput"
         >
-          <mat-label i18n="@@ssp_confirmPassword">Confirm Password</mat-label>
+          <mat-label i18n>Confirm Password</mat-label>
           <label>
             <input
               matInput
@@ -103,7 +101,7 @@
         >
           Create Account
         </button>
-        <a class="text-center" (click)="navigateTo('login')">Login</a>
+        <a class="text-center" (click)="navigateTo('login')" i18n>Login</a>
       </mat-card-actions>
     </div>
     <app-error-messages [errors]="errors"></app-error-messages>

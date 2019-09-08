@@ -6,6 +6,7 @@ import { CurrentStatusComponent } from "./pages/current-status/current-status.co
 import { NestedDataComponent } from "./pages/nested-data/nested-data.component";
 import { PreAuthenticationComponent } from "./_layout/pre-autehtication/pre-authentication.component";
 import { AppLayoutComponent } from "./_layout/app-layout/app-layout.component";
+import {AuthGuard} from "./guard/auth-guard.service";
 
 const routes: Routes = [
   {
@@ -18,6 +19,7 @@ const routes: Routes = [
   },
   { path: "",
     component: AppLayoutComponent,
+    canActivate: [AuthGuard],
     children: [
       { path: "", pathMatch: "full", redirectTo: "current-status" },
       { path: "current-status/:userId", component: CurrentStatusComponent },

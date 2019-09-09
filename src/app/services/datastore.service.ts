@@ -6,16 +6,11 @@ import { Observable, forkJoin } from "rxjs";
 import { authI, policiesI, policiesDetailsI } from "../app.models";
 import { config } from "../../config";
 
-
 @Injectable({
   providedIn: "root"
 })
 export class DatastoreService {
-
-  constructor(
-      private router: Router,
-      private http: HttpClient,
-  ) {}
+  constructor(private router: Router, private http: HttpClient) {}
 
   navigateTo(page: string) {
     this.router.navigate([`/${page}`]);
@@ -30,9 +25,7 @@ export class DatastoreService {
   }
 
   public getPoliciesDetails(): Observable<policiesDetailsI[]> {
-    return this.http.get<policiesDetailsI[]>(
-      config.apiUrl + "policiesDetails"
-    );
+    return this.http.get<policiesDetailsI[]>(config.apiUrl + "policiesDetails");
   }
 
   // public createUser(user) {

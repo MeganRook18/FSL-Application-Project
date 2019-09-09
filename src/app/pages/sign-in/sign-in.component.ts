@@ -1,8 +1,8 @@
-import {Component} from "@angular/core";
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import { Component } from "@angular/core";
+import { FormControl, FormGroup, Validators } from "@angular/forms";
 
-import {ErrorType} from "../../shared/types";
-import {authI} from "../../app.models";
+import { ErrorType } from "../../shared/types";
+import { authI } from "../../app.models";
 
 @Component({
   selector: "app-sign-in",
@@ -18,21 +18,18 @@ export class SignInComponent {
 
   public signUpForm = new FormGroup({
     email: new FormControl(
-        "",
-        Validators.compose([
-          Validators.required,
-          Validators.pattern("^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$"),
-        ])
+      "",
+      Validators.compose([
+        Validators.required,
+        Validators.pattern("^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$")
+      ])
     ),
     username: new FormControl(),
     password: new FormControl(),
-    confirmPassword: new FormControl(),
+    confirmPassword: new FormControl()
   });
 
-  constructor() {}
-
   public signUp() {
-
     this.errors = [];
 
     if (!this.signUpForm.valid) {
@@ -40,7 +37,6 @@ export class SignInComponent {
       return;
     }
     this.loading = true;
-
   }
 
   public hasError(controlName: string, errorName: string) {
@@ -56,10 +52,8 @@ export class SignInComponent {
       userId: 3,
       username: this.signUpForm.get("username").value,
       password: this.signUpForm.get("password").value,
-      email: this.signUpForm.get("email").value,
+      email: this.signUpForm.get("email").value
     };
     return newUser;
   }
-
-
 }

@@ -3,8 +3,7 @@ import { ErrorType } from "../../shared/types";
 
 @Component({
   selector: "app-error-messages",
-  templateUrl: "./error-messages.component.html",
-  styleUrls: ["./error-messages.component.scss"]
+  templateUrl: "./error-messages.component.html"
 })
 export class ErrorMessagesComponent {
   @Input() errors: ErrorType[] = [];

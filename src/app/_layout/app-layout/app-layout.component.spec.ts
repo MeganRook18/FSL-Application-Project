@@ -1,15 +1,14 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
-import {RouterTestingModule} from "@angular/router/testing";
-import {HttpClientTestingModule} from "@angular/common/http/testing";
-import {Component} from "@angular/core";
+import { RouterTestingModule } from "@angular/router/testing";
+import { HttpClientTestingModule } from "@angular/common/http/testing";
+import { Component } from "@angular/core";
 
 import { AppLayoutComponent } from "./app-layout.component";
-import {MaterialModule} from "../../shared/material.modules";
-
+import { MaterialModule } from "../../shared/material.modules";
 
 @Component({
-    selector: "app-header",
-    template: "<p> HEADER TEST COMPONENT </p>",
+  selector: "app-header",
+  template: "<p> HEADER TEST COMPONENT </p>"
 })
 export class MockHeaderComponent {}
 
@@ -19,14 +18,9 @@ describe("AppLayoutComponent", () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-          RouterTestingModule,
-          MaterialModule,
-          HttpClientTestingModule,
-      ],
-      declarations: [ AppLayoutComponent, MockHeaderComponent ],
-    })
-    .compileComponents();
+      imports: [RouterTestingModule, MaterialModule, HttpClientTestingModule],
+      declarations: [AppLayoutComponent, MockHeaderComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

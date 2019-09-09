@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
 import { ErrorMessagesComponent } from "./error-messages.component";
-import {MaterialModule} from "../../shared/material.modules";
+import { MaterialModule } from "../../shared/material.modules";
 
 describe("ErrorMessagesComponent", () => {
   let component: ErrorMessagesComponent;
@@ -10,9 +10,8 @@ describe("ErrorMessagesComponent", () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [MaterialModule],
-      declarations: [ ErrorMessagesComponent ]
-    })
-    .compileComponents();
+      declarations: [ErrorMessagesComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

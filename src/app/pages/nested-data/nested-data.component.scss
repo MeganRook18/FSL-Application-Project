@@ -1,20 +1,25 @@
+h1 {
+  margin-bottom: 0;
+  padding-bottom: 5px;
+}
 table {
+  margin-top: 40px;
   width: 100%;
-
-  tr{
+  tr {
     cursor: pointer;
-  }
-  tr.example-detail-row {
-    height: 0;
+    transition: background-color 0.35s ease-in-out;
 
-  }
+    &.example-detail-row {
+      height: 0;
+    }
 
-  tr.example-element-row:not(.example-expanded-row):hover {
-    background: #cfcfcf;
-  }
+    &.example-element-row:not(.example-expanded-row):hover {
+      background: #cfcfcf;
+    }
 
-  tr.example-element-row:not(.example-expanded-row):active {
-    background: #efefef;
+    &.example-element-row:not(.example-expanded-row):active {
+      background: #efefef;
+    }
   }
 
   .example-element-row td {
@@ -25,5 +30,4 @@ table {
     overflow: hidden;
     width: 100%;
   }
-
 }

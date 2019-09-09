@@ -11,10 +11,9 @@
     >
       {{ link.label }}
     </a>
-
   </nav>
   <div class="logout-button d-flex flex-row align-items-center">
-    <p>{{currentUser.username}}</p>
+    <p>{{ currentUser.username }}</p>
     <button mat-button (click)="logout()" title="logout">
       <mat-icon>exit_to_app</mat-icon>
     </button>

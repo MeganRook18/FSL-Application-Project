@@ -1,25 +1,26 @@
 section {
-    width: 100%;
-    background: #3f51b5;
-    color: #fff;
-    margin-bottom: 3em;
-    nav{
-      padding: 8px 16px;
-        .page-links {
-            margin: 10px 15px;
-        }
-        a:hover{
-            color: #fff;
-            text-decoration: none;
-        }
-        a.menu-link-active {
-            border-bottom: solid 1.5px #fff;
-        }
+  width: 100%;
+  background: #3f51b5;
+  color: #fff;
+  margin-bottom: 3em;
+  nav {
+    padding: 8px 16px;
+    .page-links {
+      margin: 10px 15px;
     }
-    .logout-button{
-        p{
-            margin: 0;
-            padding: 0;
-        }
+
+    a:hover {
+      color: #fff;
+      text-decoration: none;
     }
+    a.menu-link-active {
+      border-bottom: solid 1.5px #fff;
+    }
+  }
+  .logout-button {
+    p {
+      margin: 0;
+      padding: 0;
+    }
+  }
 }

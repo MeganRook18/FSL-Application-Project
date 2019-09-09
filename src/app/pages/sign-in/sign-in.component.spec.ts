@@ -1,18 +1,17 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
-import {Component, Input} from "@angular/core";
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {BrowserModule} from "@angular/platform-browser";
+import { Component, Input } from "@angular/core";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { BrowserModule } from "@angular/platform-browser";
 
 import { SignInComponent } from "./sign-in.component";
-import {MaterialModule} from "../../shared/material.modules";
-import {ErrorType} from "../../shared/types";
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { MaterialModule } from "../../shared/material.modules";
+import { ErrorType } from "../../shared/types";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 @Component({
   selector: "app-error-messages",
-  template: "<p>  Error Messages Component </p>",
+  template: "<p>  Error Messages Component </p>"
 })
-
 export class MocKErrorMessagesComponent {
   @Input() errors: ErrorType[] = [];
 }
@@ -24,15 +23,14 @@ describe("SignInComponent", () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-          MaterialModule,
-          BrowserModule,
-          FormsModule,
-          ReactiveFormsModule,
-          BrowserAnimationsModule
+        MaterialModule,
+        BrowserModule,
+        FormsModule,
+        ReactiveFormsModule,
+        BrowserAnimationsModule
       ],
-      declarations: [ SignInComponent, MocKErrorMessagesComponent]
-    })
-    .compileComponents();
+      declarations: [SignInComponent, MocKErrorMessagesComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

@@ -1,11 +1,11 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
-import {MatTableModule} from "@angular/material";
-import {HttpClientTestingModule} from "@angular/common/http/testing";
-import {RouterModule} from "@angular/router";
-import {RouterTestingModule} from "@angular/router/testing";
+import { MatTableModule } from "@angular/material";
+import { HttpClientTestingModule } from "@angular/common/http/testing";
+import { RouterModule } from "@angular/router";
+import { RouterTestingModule } from "@angular/router/testing";
 
 import { CurrentStatusComponent } from "./current-status.component";
-import {MaterialModule} from "../../shared/material.modules";
+import { MaterialModule } from "../../shared/material.modules";
 
 describe("CurrentStatusComponent", () => {
   let component: CurrentStatusComponent;
@@ -18,11 +18,10 @@ describe("CurrentStatusComponent", () => {
         MatTableModule,
         HttpClientTestingModule,
         RouterModule,
-        RouterTestingModule,
+        RouterTestingModule
       ],
-      declarations: [ CurrentStatusComponent ]
-    })
-    .compileComponents();
+      declarations: [CurrentStatusComponent]
+    }).compileComponents();
     fixture = TestBed.createComponent(CurrentStatusComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

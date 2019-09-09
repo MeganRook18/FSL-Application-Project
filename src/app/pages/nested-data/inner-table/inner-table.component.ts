@@ -1,4 +1,4 @@
-import {Component, Input, OnDestroy, OnInit} from "@angular/core";
+import { Component, Input, OnDestroy, OnInit } from "@angular/core";
 import { Subscription } from "rxjs";
 import _ from "lodash";
 
@@ -8,13 +8,13 @@ import { DatastoreService } from "../../../services/datastore.service";
 @Component({
   selector: "app-inner-table",
   templateUrl: "./inner-table.component.html",
-  styleUrls: ["./inner-table.component.scss"],
+  styleUrls: ["./inner-table.component.scss"]
 })
 export class InnerTableComponent implements OnInit, OnDestroy {
   @Input() polId: number;
   public details: policiesDetailsI[] = [];
-  private _subscription: Subscription;
 
+  private _subscription: Subscription;
   constructor(private _api: DatastoreService) {}
 
   ngOnInit() {

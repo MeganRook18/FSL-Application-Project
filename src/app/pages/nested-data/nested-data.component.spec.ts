@@ -1,11 +1,12 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 import {Component, Input} from "@angular/core";
 import {MatTableModule} from "@angular/material/table";
+import {RouterModule} from "@angular/router";
+import {HttpClientTestingModule} from "@angular/common/http/testing";
+import {RouterTestingModule} from "@angular/router/testing";
 
 import { NestedDataComponent } from "./nested-data.component";
-import {HttpClientTestingModule} from "@angular/common/http/testing";
 import {MaterialModule} from "../../shared/material.modules";
-import {RouterModule} from "@angular/router";
 
 @Component({
     selector: "app-inner-table",
@@ -26,7 +27,8 @@ describe("NestedDataComponent", () => {
           MaterialModule,
           MatTableModule,
           HttpClientTestingModule,
-          RouterModule
+          RouterModule,
+          RouterTestingModule,
       ],
       declarations: [ NestedDataComponent, MocKInnerTableComponent]
     })

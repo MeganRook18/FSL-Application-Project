@@ -1,14 +1,36 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import {Component, Input} from "@angular/core";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {BrowserModule} from "@angular/platform-browser";
 
-import { SignInComponent } from './sign-in.component';
+import { SignInComponent } from "./sign-in.component";
+import {MaterialModule} from "../../shared/material.modules";
+import {ErrorType} from "../../shared/types";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
-describe('SignInComponent', () => {
+@Component({
+  selector: "app-error-messages",
+  template: "<p>  Error Messages Component </p>",
+})
+
+export class MocKErrorMessagesComponent {
+  @Input() errors: ErrorType[] = [];
+}
+
+describe("SignInComponent", () => {
   let component: SignInComponent;
   let fixture: ComponentFixture<SignInComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SignInComponent ]
+      imports: [
+          MaterialModule,
+          BrowserModule,
+          FormsModule,
+          ReactiveFormsModule,
+          BrowserAnimationsModule
+      ],
+      declarations: [ SignInComponent, MocKErrorMessagesComponent]
     })
     .compileComponents();
   }));
@@ -19,7 +41,7 @@ describe('SignInComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

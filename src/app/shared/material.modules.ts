@@ -5,7 +5,7 @@ import {
   MatOptionModule,
   MatSelectModule,
   MatInputModule,
-  MatButtonModule, MatTableModule, MatIconModule, MatMenuModule
+  MatButtonModule, MatTableModule, MatIconModule, MatMenuModule, MatSortModule
 } from "@angular/material";
 import {MatPasswordStrengthModule} from "@angular-material-extensions/password-strength";
 
@@ -21,6 +21,7 @@ import {MatPasswordStrengthModule} from "@angular-material-extensions/password-s
     MatIconModule,
     MatPasswordStrengthModule,
     MatMenuModule,
+    MatSortModule,
   ]
 })
 export class MaterialModule {}

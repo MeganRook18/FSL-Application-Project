@@ -13,7 +13,6 @@ import { DatastoreService } from "../../../services/datastore.service";
 export class InnerTableComponent implements OnInit, OnDestroy {
   @Input() polId: number;
   public details: policiesDetailsI[] = [];
-
   private _subscription: Subscription;
 
   constructor(private _api: DatastoreService) {}

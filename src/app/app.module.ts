@@ -46,7 +46,6 @@ import {MatSortModule} from "@angular/material/sort";
         BrowserAnimationsModule,
         InMemoryWebApiModule.forRoot(ApiDataService),
         MaterialModule,
-        MatSortModule,
     ],
   providers: [
       { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

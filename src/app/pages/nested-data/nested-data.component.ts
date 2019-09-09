@@ -1,14 +1,13 @@
-import {Component, OnDestroy, OnInit, ViewChild} from "@angular/core";
+import {Component, OnInit, ViewChild} from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
+import {MatSort} from "@angular/material/sort";
 import {MatTableDataSource} from "@angular/material";
 import {animate, state, style, transition, trigger} from "@angular/animations";
 import _ from "lodash";
 
 import { policiesI } from "../../app.models";
 import {fadeIn} from "../../animations";
-import {AuthenticationService} from "../../services/authentication.serivce";
-import {Subscription} from "rxjs";
-import {MatSort} from "@angular/material/sort";
+
 
 @Component({
   selector: "app-nested-data",
@@ -23,32 +22,20 @@ import {MatSort} from "@angular/material/sort";
     ]),
   ],
 })
-export class NestedDataComponent implements OnInit, OnDestroy {
+export class NestedDataComponent implements OnInit {
   public dataSource = new MatTableDataSource();
   public columnsToDisplay = ["num", "amount", "description"];
   public expandedElement: policiesI | null;
 
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
-  private _subscription: Subscription;
-
-  constructor(
-      private route: ActivatedRoute,
-      private authenticationService: AuthenticationService,
-      ) {}
+  constructor(private route: ActivatedRoute) {}
 
   ngOnInit() {
-    this._subscription = this.authenticationService.currentUser.subscribe(user => {
-         this.dataSource.data = _.filter(this.route.snapshot.data.data, {
-          userId: user.userId});
-         this.dataSource.sort = this.sort;
-     });
-  }
-
-   ngOnDestroy() {
-    if (this._subscription) {
-      this._subscription.unsubscribe();
-    }
+      const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+      this.dataSource.data = _.filter(this.route.snapshot.data.data, {
+          userId: currentUser.userId});
+      this.dataSource.sort = this.sort;
   }
 }
 

@@ -1,19 +1,15 @@
-import {Component, OnDestroy, OnInit} from "@angular/core";
+import {Component} from "@angular/core";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {Subscription} from "rxjs";
 
-import { DatastoreService } from "src/app/services/datastore.service";
 import {ErrorType} from "../../shared/types";
 import {authI} from "../../app.models";
-
 
 @Component({
   selector: "app-sign-in",
   templateUrl: "./sign-in.component.html",
   styleUrls: ["./sign-in.component.scss"]
 })
-export class SignInComponent implements OnInit, OnDestroy  {
-  private success: boolean;
+export class SignInComponent {
   public hidePassword = true;
   public passwordStrength: number;
   public errors: ErrorType[];
@@ -33,28 +29,17 @@ export class SignInComponent implements OnInit, OnDestroy  {
     confirmPassword: new FormControl(),
   });
 
-  constructor(private dataStore: DatastoreService) {}
-
-   ngOnInit(): void {
-     console.log("ngOnInit");
-      this.dataStore.getPolicies().subscribe(a => {
-      console.log(a);
-    });
-   }
+  constructor() {}
 
   public signUp() {
-    console.log("sign up");
 
-    // this.errors = [];
-    //
-    // if (!this.signUpForm.valid) {
-    //   this.errors.push(ErrorType.Validation);
-    //   return;
-    // }
-    // this.loading = true;
-    // this.dataStore.createUser(this._formToUserObject()).subscribe((ret) => {
-    //   console.log("user created: ", ret);
-    // });
+    this.errors = [];
+
+    if (!this.signUpForm.valid) {
+      this.errors.push(ErrorType.Validation);
+      return;
+    }
+    this.loading = true;
 
   }
 
@@ -65,14 +50,6 @@ export class SignInComponent implements OnInit, OnDestroy  {
   public onStrengthChanged(strength: number) {
     this.passwordStrength = strength;
   }
-
-  ngOnDestroy(): void {}
-
-  // private _generateUserId() {
-  //   console.log("_generateUserId");
-  //   let n: number;
-  //   return n;
-  // }
 
   private _formToUserObject() {
     const newUser: authI = {

@@ -1,13 +1,21 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import {HttpClientTestingModule} from "@angular/common/http/testing";
+import {RouterTestingModule} from "@angular/router/testing";
 
-import { PreAuthenticationComponent } from './pre-authentication.component';
+import { PreAuthenticationComponent } from "./pre-authentication.component";
+import {MaterialModule} from "../../shared/material.modules";
 
-describe('PreAuthenticationComponent', () => {
+describe("PreAuthenticationComponent", () => {
   let component: PreAuthenticationComponent;
   let fixture: ComponentFixture<PreAuthenticationComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [
+        RouterTestingModule,
+        MaterialModule,
+        HttpClientTestingModule,
+      ],
       declarations: [ PreAuthenticationComponent ]
     })
     .compileComponents();
@@ -19,7 +27,7 @@ describe('PreAuthenticationComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

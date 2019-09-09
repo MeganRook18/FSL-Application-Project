@@ -1,13 +1,13 @@
-import { Component, OnInit } from "@angular/core";
+import {Component, OnDestroy, OnInit} from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import {MatTableDataSource} from "@angular/material";
 import {animate, state, style, transition, trigger} from "@angular/animations";
-import { Subscription } from "rxjs";
 import _ from "lodash";
 
-import { DatastoreService } from "src/app/services/datastore.service";
 import { policiesI } from "../../app.models";
 import {fadeIn} from "../../animations";
+import {AuthenticationService} from "../../services/authentication.serivce";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: "app-nested-data",
@@ -22,8 +22,7 @@ import {fadeIn} from "../../animations";
     ]),
   ],
 })
-export class NestedDataComponent implements OnInit {
-  public policies: policiesI[] = [];
+export class NestedDataComponent implements OnInit, OnDestroy {
   public dataSource = new MatTableDataSource();
   public columnsToDisplay = ["num", "amount", "description"];
   public expandedElement: policiesI | null;
@@ -31,23 +30,22 @@ export class NestedDataComponent implements OnInit {
   private _subscription: Subscription;
 
   constructor(
-    private _api: DatastoreService,
-    private _activatedRoute: ActivatedRoute
-  ) {}
+      private route: ActivatedRoute,
+      private authenticationService: AuthenticationService,
+      ) {}
 
   ngOnInit() {
-    this._getTableData();
+    // TODO - set id as route, so can do snap shot.
+    this._subscription = this.authenticationService.currentUser.subscribe(user => {
+         this.dataSource.data = _.filter(this.route.snapshot.data.data, {
+          userId: user.id});
+     });
   }
 
-  private _getTableData() {
-    this._subscription = this._api
-        .getPolicies()
-        .subscribe((policies: policiesI[]) => {
-          this.policies = _.filter(policies, {
-            userId: parseInt(this._activatedRoute.snapshot.paramMap.get("userId"))
-          });
-          this.dataSource.data = this.policies;
-        });
+   ngOnDestroy() {
+    if (this._subscription) {
+      this._subscription.unsubscribe();
+    }
   }
 }
 

@@ -7,6 +7,7 @@ import { NestedDataComponent } from "./pages/nested-data/nested-data.component";
 import { PreAuthenticationComponent } from "./_layout/pre-autehtication/pre-authentication.component";
 import { AppLayoutComponent } from "./_layout/app-layout/app-layout.component";
 import {AuthGuard} from "./guard/auth-guard.service";
+import {CxResolver} from "./services/cx.resolver";
 
 const routes: Routes = [
   {
@@ -21,17 +22,26 @@ const routes: Routes = [
     component: AppLayoutComponent,
     canActivate: [AuthGuard],
     children: [
-      { path: "", pathMatch: "full", redirectTo: "current-status" },
-      { path: "current-status/:userId", component: CurrentStatusComponent },
-      { path: "nested-data/:userId", component: NestedDataComponent },
-      { path: "**", redirectTo: "current-status" }
+      {
+        path: "current-status",
+        component: CurrentStatusComponent,
+        resolve: {data: CxResolver}
+      },
+      {
+        path: "nested-data",
+        component: NestedDataComponent,
+        resolve: {data: CxResolver},
+      },
     ],
   },
+  // otherwise redirect to home
+  { path: "**", redirectTo: "" }
 
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [CxResolver]
 })
 export class AppRoutingModule { }

@@ -64,9 +64,8 @@ export class SignInComponent implements OnInit, OnDestroy  {
   }
 
   ngOnInit(): void {
-    this._subscription = this.dataStore.getUser().subscribe((users: authI[]) => {
+    this._subscription = this.dataStore.getUsers().subscribe((users: authI[]) => {
       this._allUsers = users;
-      console.log(this._allUsers);
     });
   }
 

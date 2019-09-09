@@ -1,12 +1,13 @@
 import {Component, OnDestroy, OnInit} from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
+import {ActivatedRoute, Router} from "@angular/router";
+import {first} from "rxjs/operators";
 import { Subscription } from "rxjs";
 
 import { DatastoreService } from "src/app/services/datastore.service";
 import { ErrorType } from "../../shared/types";
 import {AuthenticationService} from "../../services/authentication.serivce";
-import {ActivatedRoute, Router} from "@angular/router";
-import {first} from "rxjs/operators";
+
 
 @Component({
   selector: "app-log-in",
@@ -40,8 +41,8 @@ export class LogInComponent implements OnInit, OnDestroy {
   ngOnInit() {
     // reset login status
     this.authenticationService.logout();
-    // get return url from route parameters or default to '/'
-    this.returnUrl = this.route.snapshot.queryParams.returnUrl || "/";
+    // get return url from route parameters or default to '/current-status'
+    this.returnUrl = this.route.snapshot.queryParams["returnUrl"] || "/current-status";
   }
 
   // easy access to form fields
@@ -60,12 +61,11 @@ export class LogInComponent implements OnInit, OnDestroy {
         .pipe(first())
         .subscribe(
             data => {
-              console.log("success", data);
               this.router.navigate([this.returnUrl]);
             },
             error => {
               console.log("error", error);
-              this.errors.push(error);
+              this.errors.push(this.errorType.Failed);
               this.loading = false;
             });
   }

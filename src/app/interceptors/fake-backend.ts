@@ -2,14 +2,25 @@ import { Injectable } from "@angular/core";
 import { HttpRequest, HttpResponse, HttpHandler, HttpEvent, HttpInterceptor, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { Observable, of, throwError } from "rxjs";
 import { delay, mergeMap, materialize, dematerialize } from "rxjs/operators";
-import {authI} from "../app.models";
 
+import {authI} from "../app.models";
 
 @Injectable()
 export class FakeBackendInterceptor implements HttpInterceptor {
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         const users: authI[] = [
-            { userId: 1, username: "test", password: "test", email: "Test"}
+        {
+            userId: 1,
+            username: "admin",
+            password: "admin",
+            email: "admin@admin.com"
+        },
+         {
+            userId: 2,
+            username: "guest",
+            password: "guest",
+            email: "guest@guest.com"
+        }
         ];
 
         const authHeader = request.headers.get("Authorization");
@@ -17,20 +28,20 @@ export class FakeBackendInterceptor implements HttpInterceptor {
 
         // wrap in delayed observable to simulate server api call
         return of(null).pipe(mergeMap(() => {
-
             // authenticate - public
-            if (request.url.endsWith("/users/authenticate") && request.method === "POST") {
+            if (request.url.endsWith("auth/authenticate") && request.method === "POST") {
                 const user = users.find(x => x.username === request.body.username && x.password === request.body.password);
                 if (!user) { return error("Username or password is incorrect"); }
                 return ok({
                     id: user.userId,
                     username: user.username,
+                    email: user.email,
                     token: `fake-jwt-token`
                 });
             }
 
             // get all users
-            if (request.url.endsWith("/users") && request.method === "GET") {
+            if (request.url.endsWith("auth") && request.method === "GET") {
                 if (!isLoggedIn) { return unauthorised(); }
                 return ok(users);
             }
@@ -39,7 +50,6 @@ export class FakeBackendInterceptor implements HttpInterceptor {
             return next.handle(request);
         }))
         // call materialize and dematerialize to ensure delay even if an error
-        // is thrown (https://github.com/Reactive-Extensions/RxJS/issues/648)
             .pipe(materialize())
             .pipe(delay(500))
             .pipe(dematerialize());

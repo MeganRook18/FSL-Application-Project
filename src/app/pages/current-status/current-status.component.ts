@@ -3,9 +3,9 @@ import { ActivatedRoute } from "@angular/router";
 import { Subscription } from "rxjs";
 import _ from "lodash";
 
-import { DatastoreService } from "src/app/services/datastore.service";
-import { policiesI } from "../../app.models";
+import {policiesI} from "../../app.models";
 import {fadeIn} from "../../animations";
+import {AuthenticationService} from "../../services/authentication.serivce";
 
 @Component({
   selector: "app-current-status",
@@ -18,20 +18,16 @@ export class CurrentStatusComponent implements OnInit, OnDestroy {
   private _subscription: Subscription;
 
   constructor(
-    private _api: DatastoreService,
-    private _activatedRoute: ActivatedRoute
+    private authenticationService: AuthenticationService,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit() {
-    // TODO - method slow, as pulling in all policies rather than policies related to userId
-
-    this._subscription = this._api
-      .getPolicies()
-      .subscribe((policies: policiesI[]) => {
-        this.policies = _.filter(policies, {
-          userId: parseInt(this._activatedRoute.snapshot.paramMap.get("userId"))
-        });
-      });
+    // TODO - set id as route, so can do snap shot.
+     this._subscription = this.authenticationService.currentUser.subscribe(user => {
+        this.policies = _.filter(this.route.snapshot.data.data, {
+          userId: user.id});
+     });
   }
 
   ngOnDestroy() {

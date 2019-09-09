@@ -1,21 +1,21 @@
 <section class="d-flex flex-row justify-content-between">
   <nav>
     <button mat-button>Company X</button>
-    <button
+    <a
       class="page-links"
       *ngFor="let link of routeLinks; let i = index"
       id="{{ link.link }}"
       [routerLink]="link.link"
-      routerLinkActive
+      routerLinkActive="menu-link-active"
       mat-button
-      #rla="routerLinkActive"
     >
       {{ link.label }}
-    </button>
+    </a>
+
   </nav>
   <div class="logout-button d-flex flex-row align-items-center">
-    <p>USER NAME</p>
-    <button mat-button>
+    <p>{{currentUser.username}}</p>
+    <button mat-button (click)="logout()" title="logout">
       <mat-icon>exit_to_app</mat-icon>
     </button>
   </div>

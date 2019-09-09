@@ -4,7 +4,6 @@ import { AppRoutingModule } from "./app-routing.module";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { MatPasswordStrengthModule } from "@angular-material-extensions/password-strength";
 
 import { InMemoryWebApiModule } from "angular-in-memory-web-api";
 import { ApiDataService } from "./api-data.service";
@@ -18,8 +17,7 @@ import {MaterialModule} from "./shared/material.modules";
 import { ErrorMessagesComponent } from "./components/error-messages/error-messages.component";
 import { PreAuthenticationComponent } from "./_layout/pre-autehtication/pre-authentication.component";
 import { AppLayoutComponent } from "./_layout/app-layout/app-layout.component";
-import {MatMenuModule} from "@angular/material";
-import { InnerTableComponent } from './pages/nested-data/inner-table/inner-table.component';
+import { InnerTableComponent } from "./pages/nested-data/inner-table/inner-table.component";
 import {fakeBackendProvider} from "./interceptors/fake-backend";
 import {ErrorInterceptor} from "./interceptors/error.interceptor";
 import {JwtInterceptor} from "./interceptors/jwt.interceptor";

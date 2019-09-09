@@ -8,6 +8,13 @@ section {
         .page-links {
             margin: 10px 15px;
         }
+        a:hover{
+            color: #fff;
+            text-decoration: none;
+        }
+        a.menu-link-active {
+            border-bottom: solid 1.5px #fff;
+        }
     }
     .logout-button{
         p{

@@ -1,6 +1,4 @@
-import {Component, OnInit} from "@angular/core";
-import {first} from "rxjs/operators";
-import {authI} from "../../app.models";
+import {Component, OnDestroy, OnInit} from "@angular/core";
 import {DatastoreService} from "../../services/datastore.service";
 
 @Component({
@@ -8,14 +6,8 @@ import {DatastoreService} from "../../services/datastore.service";
   templateUrl: "./app-layout.component.html",
   styleUrls: ["./app-layout.component.scss"]
 })
-export class AppLayoutComponent implements OnInit {
-  users: authI[] = [];
-
+export class AppLayoutComponent implements OnInit{
   constructor(private api: DatastoreService) { }
 
-  ngOnInit() {
-    this.api.getUser().pipe(first()).subscribe(users => {
-      this.users = users;
-    });
-  }
+  ngOnInit() {}
 }

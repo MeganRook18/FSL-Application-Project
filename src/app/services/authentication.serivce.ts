@@ -4,14 +4,15 @@ import {BehaviorSubject, Observable} from "rxjs";
 import { map } from "rxjs/operators";
 
 import {authI} from "../app.models";
+import {config} from "../../config";
 
 @Injectable({ providedIn: "root" })
 export class AuthenticationService {
-    private SERVER_URL = "http://localhost:8080/api/";
     private currentUserSubject: BehaviorSubject<authI>;
     public currentUser: Observable<authI>;
 
-    constructor(private http: HttpClient) {
+    constructor(
+        private http: HttpClient ) {
         this.currentUserSubject = new BehaviorSubject<authI>(JSON.parse(localStorage.getItem("currentUser")));
         this.currentUser = this.currentUserSubject.asObservable();
     }
@@ -21,18 +22,15 @@ export class AuthenticationService {
     }
 
     login(username: string, password: string) {
-        console.log("login", username);
-        return this.http.post<any>(this.SERVER_URL + "auth/authenticate", { username, password })
+        return this.http.post<any>(config.apiUrl + "auth/authenticate", { username, password })
             .pipe(map(user => {
-                console.log(user);
-                console.log(user.token);
                 // login successful if there's a jwt token in the response
                 if (user && user.token) {
+                    // TODO - use cache instead of local storage?
                     // store user details and jwt token in local storage to keep user logged in between page refreshes
                     localStorage.setItem("currentUser", JSON.stringify(user));
                     this.currentUserSubject.next(user);
                 }
-
                 return user;
             }));
     }

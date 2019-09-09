@@ -28,9 +28,11 @@ export class DatastoreService {
     return this.http.get<policiesDetailsI[]>(config.apiUrl + "policiesDetails");
   }
 
-  // public createUser(user) {
-  //   return this.http.post(config.apiUrl + "auth", { user});
-  // }
+  public createUser(user) {
+    console.log(user);
+    return this.http
+        .post(config.apiUrl + "auth", user);
+  }
 
   // Only for Demo purposes
   public apiData(): Observable<any[]> {

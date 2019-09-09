@@ -20,6 +20,7 @@ export class LogInComponent implements OnInit, OnDestroy {
   public hidePassword = true;
   public errorType = ErrorType;
   public errors: ErrorType[] = [];
+  public path = "login";
   public loading = false;
   public returnUrl: string;
 

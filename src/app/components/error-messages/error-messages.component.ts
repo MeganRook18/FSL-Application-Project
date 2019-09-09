@@ -1,4 +1,4 @@
-import { Component, Input } from "@angular/core";
+import {Component, Input} from "@angular/core";
 import { ErrorType } from "../../shared/types";
 
 @Component({
@@ -7,5 +7,6 @@ import { ErrorType } from "../../shared/types";
 })
 export class ErrorMessagesComponent {
   @Input() errors: ErrorType[] = [];
+  @Input() path: string;
   public errorType = ErrorType;
 }

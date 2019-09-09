@@ -17,7 +17,8 @@ export class FakeBackendInterceptor implements HttpInterceptor {
   intercept(
     request: HttpRequest<any>,
     next: HttpHandler
-  ): Observable<HttpEvent<any>> {
+  ): Observable<HttpEvent<any>>{
+    // TODO: connect to database instead of hard code
     const users: authI[] = [
       {
         userId: 1,
@@ -62,15 +63,6 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                 token: `fake-jwt-token`
               });
             }
-
-            // get all users
-            if (request.url.endsWith("auth") && request.method === "GET") {
-              if (!isLoggedIn) {
-                return unauthorised();
-              }
-              return ok(users);
-            }
-
             // pass through any requests not handled above
             return next.handle(request);
           })

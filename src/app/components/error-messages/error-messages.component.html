@@ -2,10 +2,15 @@
   <ng-container *ngFor="let error of errors">
     <ng-container [ngSwitch]="error">
       <mat-error *ngSwitchCase="errorType.Validation">
-        <span i18n>Please enter your login credentials</span>
+        <span i18n *ngIf="path === 'login'">Please enter your login credentials</span>
+        <span i18n *ngIf="path === 'sign-up'">Please fill out the sign up form correctly</span>
       </mat-error>
       <mat-error *ngSwitchCase="errorType.Failed">
-        <span i18n>Login details not recognised</span>
+        <span i18n *ngIf="path === 'login'">Login details not recognised</span>
+        <span i18n *ngIf="path === 'sign-up'">Passwords do not match</span>
+      </mat-error>
+      <mat-error *ngSwitchCase="errorType.Disabled">
+        <span i18n *ngIf="path === 'sign-up'">User already exist</span>
       </mat-error>
       <mat-error i18n *ngSwitchCase="errorType.Network"
         >A communication problem occurred, please speak to Company X support if

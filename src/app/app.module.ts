@@ -21,7 +21,6 @@ import { InnerTableComponent } from "./pages/nested-data/inner-table/inner-table
 import { fakeBackendProvider } from "./interceptors/fake-backend";
 import { ErrorInterceptor } from "./interceptors/error.interceptor";
 import { JwtInterceptor } from "./interceptors/jwt.interceptor";
-import { MatSortModule } from "@angular/material/sort";
 
 @NgModule({
   declarations: [

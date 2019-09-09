@@ -21,6 +21,7 @@ import { InnerTableComponent } from "./pages/nested-data/inner-table/inner-table
 import {fakeBackendProvider} from "./interceptors/fake-backend";
 import {ErrorInterceptor} from "./interceptors/error.interceptor";
 import {JwtInterceptor} from "./interceptors/jwt.interceptor";
+import {MatSortModule} from "@angular/material/sort";
 
 
 @NgModule({
@@ -45,6 +46,7 @@ import {JwtInterceptor} from "./interceptors/jwt.interceptor";
         BrowserAnimationsModule,
         InMemoryWebApiModule.forRoot(ApiDataService),
         MaterialModule,
+        MatSortModule,
     ],
   providers: [
       { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

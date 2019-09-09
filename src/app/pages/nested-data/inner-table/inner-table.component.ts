@@ -19,8 +19,6 @@ export class InnerTableComponent implements OnInit, OnDestroy {
   constructor(private _api: DatastoreService) {}
 
   ngOnInit() {
-    // TODO: how to only sub when in view?
-    //     - something to do with the async pipe
     this._subscription = this._api.getPoliciesDetails().subscribe(details => {
       this.details = _.filter(details, {
         polId: this.polId

@@ -23,10 +23,9 @@ export class CurrentStatusComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    // TODO - set id as route, so can do snap shot.
      this._subscription = this.authenticationService.currentUser.subscribe(user => {
         this.policies = _.filter(this.route.snapshot.data.data, {
-          userId: user.id});
+          userId: user.userId});
      });
   }
 

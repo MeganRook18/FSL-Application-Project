@@ -2,22 +2,26 @@
   <h1 class="mat-headline text-center" i18n>Nested Data</h1>
   <table
     mat-table
+    matSort
     [dataSource]="dataSource"
     multiTemplateDataRows
     class="mat-elevation-z8"
   >
     <ng-container matColumnDef="num">
-      <th mat-header-cell *matHeaderCellDef i18n>Policy Number</th>
-      <td mat-cell *matCellDef="let element" @fade>{{ element.num }}</td>
+      <th mat-header-cell *matHeaderCellDef i18n mat-sort-header>Policy Number</th>
+      <td mat-cell *matCellDef="let element" @fade>
+        <button mat-icon-button><mat-icon>expand_more</mat-icon></button>
+        {{ element.num }}
+      </td>
     </ng-container>
 
     <ng-container matColumnDef="amount">
-      <th mat-header-cell *matHeaderCellDef i18n>Amount</th>
+      <th mat-header-cell *matHeaderCellDef i18n mat-sort-header>Amount</th>
       <td mat-cell *matCellDef="let element" @fade>{{ element.amount }}</td>
     </ng-container>
 
     <ng-container matColumnDef="description">
-      <th mat-header-cell *matHeaderCellDef i18n>Description</th>
+      <th mat-header-cell *matHeaderCellDef i18n mat-sort-header>Description</th>
       <td mat-cell *matCellDef="let element" @fade>{{ element.description }}</td>
     </ng-container>
     <!-- Expanded Content Column -->
@@ -33,9 +37,7 @@
             element == expandedElement ? 'expanded' : 'collapsed'
           "
         >
-
           <app-inner-table [polId]="element.polId"></app-inner-table>
-
         </div>
       </td>
     </ng-container>

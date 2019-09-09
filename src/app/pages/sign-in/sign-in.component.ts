@@ -33,28 +33,31 @@ export class SignInComponent implements OnInit, OnDestroy  {
     confirmPassword: new FormControl(),
   });
 
-  private _subscription: Subscription;
-  private _allUsers: authI[];
-
   constructor(private dataStore: DatastoreService) {}
 
-  public navigateTo(page: string) {
-    this.dataStore.navigateTo(page);
-  }
+   ngOnInit(): void {
+     console.log("ngOnInit");
+      this.dataStore.getPolicies().subscribe(a => {
+      console.log(a);
+    });
+   }
 
   public signUp() {
-    this.errors = [];
+    console.log("sign up");
 
-    if (!this.signUpForm.valid) {
-      this.errors.push(ErrorType.Validation);
-      return;
-    }
-    this.loading = true;
-    this.dataStore.createUser(this._formToUserObject()).subscribe((ret) => {
-      console.log("user created: ", ret);
-    });
+    // this.errors = [];
+    //
+    // if (!this.signUpForm.valid) {
+    //   this.errors.push(ErrorType.Validation);
+    //   return;
+    // }
+    // this.loading = true;
+    // this.dataStore.createUser(this._formToUserObject()).subscribe((ret) => {
+    //   console.log("user created: ", ret);
+    // });
 
   }
+
   public hasError(controlName: string, errorName: string) {
     return this.signUpForm.controls[controlName].hasError(errorName);
   }
@@ -63,30 +66,23 @@ export class SignInComponent implements OnInit, OnDestroy  {
     this.passwordStrength = strength;
   }
 
-  ngOnInit(): void {
-    this._subscription = this.dataStore.getUsers().subscribe((users: authI[]) => {
-      this._allUsers = users;
-    });
-  }
+  ngOnDestroy(): void {}
 
-  ngOnDestroy(): void {
-    if (this._subscription) {
-      this._subscription.unsubscribe();
-    }
-  }
-
-  private _generateUserId() {
-    const l = this._allUsers.length;
-    return this._allUsers[l - 1].userId + 1;
-  }
+  // private _generateUserId() {
+  //   console.log("_generateUserId");
+  //   let n: number;
+  //   return n;
+  // }
 
   private _formToUserObject() {
     const newUser: authI = {
-      userId: this._generateUserId(),
+      userId: 3,
       username: this.signUpForm.get("username").value,
       password: this.signUpForm.get("password").value,
       email: this.signUpForm.get("email").value,
     };
     return newUser;
   }
+
+
 }

@@ -74,7 +74,7 @@ module.exports = "<div class=\"text-center\">\n<ng-container *ngFor=\"let error 
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<section class=\"d-flex flex-row justify-content-between\">\n  <nav>\n    <button mat-button>Company X</button>\n    <button\n      class=\"page-links\"\n      *ngFor=\"let link of routeLinks; let i = index\"\n      id=\"{{ link.link }}\"\n      [routerLink]=\"link.link\"\n      routerLinkActive\n      mat-button\n      #rla=\"routerLinkActive\"\n    >\n      {{ link.label }}\n    </button>\n  </nav>\n  <div class=\"logout-button d-flex flex-row align-items-center\">\n    <p>{{currentUser}}</p>\n    <button mat-button (click)=\"logout()\" title=\"logout\">\n      <mat-icon>exit_to_app</mat-icon>\n    </button>\n  </div>\n</section>\n"
+module.exports = "<section class=\"d-flex flex-row justify-content-between\">\n  <nav>\n    <button mat-button>Company X</button>\n    <a\n      class=\"page-links\"\n      *ngFor=\"let link of routeLinks; let i = index\"\n      id=\"{{ link.link }}\"\n      [routerLink]=\"link.link\"\n      routerLinkActive=\"menu-link-active\"\n      mat-button\n    >\n      {{ link.label }}\n    </a>\n\n  </nav>\n  <div class=\"logout-button d-flex flex-row align-items-center\">\n    <p>{{currentUser.username}}</p>\n    <button mat-button (click)=\"logout()\" title=\"logout\">\n      <mat-icon>exit_to_app</mat-icon>\n    </button>\n  </div>\n</section>\n"
 
 /***/ }),
 
@@ -129,7 +129,7 @@ module.exports = "<div class=\"container\">\n  <h1 class=\"mat-headline text-cen
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<form [formGroup]=\"signUpForm\" (ngSubmit)=\"signUp()\">\n  <mat-card>\n    <div class=\"form-shared\">\n      <mat-card-header>\n        <mat-card-header class=\"d-flex flex-column text-center\">\n          <h4 i18n class=\"font-weight-bold\">Company X Sign Up</h4>\n          <h6 i18n>Please enter a valid email address & create a password</h6>\n        </mat-card-header>\n      </mat-card-header>\n\n      <mat-card-content>\n        <!-- Email -->\n        <mat-form-field class=\"input-full-width\">\n          <label>\n            <input\n              formControlName=\"email\"\n              type=\"email\"\n              matInput\n              required\n              placeholder=\"Enter your email\"\n            />\n          </label>\n          <mat-error *ngIf=\"hasError('email', 'pattern')\" i18n\n            >Incorrect formatting</mat-error\n          >\n        </mat-form-field>\n        <!-- User name -->\n        <mat-form-field class=\"input-full-width\">\n          <label>\n            <input\n              formControlName=\"username\"\n              type=\"text\"\n              matInput\n              required\n              placeholder=\"Enter an username\"\n            />\n          </label>\n          <mat-error *ngIf=\"hasError('email', 'pattern')\" i18n\n            >Incorrect formatting</mat-error\n          >\n        </mat-form-field>\n\n        <!-- Enter New Password -->\n        <mat-form-field appearance=\"outline\" class=\"input-full-width\">\n          <mat-label i18n>New Password</mat-label>\n          <label>\n            <input\n              matInput\n              #passwordWithValidation\n              required\n              formControlName=\"password\"\n              placeholder=\"New Password\"\n              [type]=\"hidePassword ? 'password' : 'text'\"\n            />\n          </label>\n          <mat-icon matSuffix (click)=\"hidePassword = !hidePassword\"\n            >{{ hidePassword ? \"visibility\" : \"visibility_off\" }}\n          </mat-icon>\n        </mat-form-field>\n        <mat-password-strength\n          [password]=\"passwordWithValidation.value\"\n          (onStrengthChanged)=\"onStrengthChanged($event)\"\n        >\n        </mat-password-strength>\n        <!-- Password's strength info -->\n        <label *ngIf=\"passwordStrength > 1\" class=\"password-strength\" i18n\n          >Password Strength:\n          <span *ngIf=\"passwordStrength <= 20\" i18n>Weak</span>\n          <span\n            *ngIf=\"passwordStrength > 21 && passwordStrength <= 80\"\n            i18n>Medium</span>\n          <span *ngIf=\"passwordStrength > 81\" i18n=\"@@ssp_strong\">Strong</span>\n        </label>\n        <!-- Confirm New Password -->\n        <mat-form-field\n          appearance=\"outline\"\n          class=\"input-full-width confirmPasswordInput\"\n        >\n          <mat-label i18n>Confirm Password</mat-label>\n          <label>\n            <input\n              matInput\n              formControlName=\"confirmPassword\"\n              required\n              placeholder=\"Confirm Password\"\n              [type]=\"hidePassword ? 'password' : 'text'\"\n            />\n          </label>\n          <mat-icon matSuffix (click)=\"hidePassword = !hidePassword\"\n            >{{ hidePassword ? \"visibility\" : \"visibility_off\" }}\n          </mat-icon>\n        </mat-form-field>\n      </mat-card-content>\n      <mat-card-actions class=\"d-flex flex-column\">\n        <button\n          i18n\n          mat-raised-button\n          color=\"primary\"\n          [disabled]=\"loading\"\n          type=\"submit\"\n        >\n          Create Account\n        </button>\n        <a class=\"text-center\" (click)=\"navigateTo('login')\" i18n>Login</a>\n      </mat-card-actions>\n    </div>\n    <app-error-messages [errors]=\"errors\"></app-error-messages>\n  </mat-card>\n</form>\n"
+module.exports = "<form [formGroup]=\"signUpForm\" (ngSubmit)=\"signUp()\">\n  <mat-card>\n    <div class=\"form-shared\">\n      <mat-card-header>\n        <mat-card-header class=\"d-flex flex-column text-center\">\n          <h4 i18n class=\"font-weight-bold\">Company X Sign Up</h4>\n          <h6 i18n>Please enter a valid email address & create a password</h6>\n        </mat-card-header>\n      </mat-card-header>\n\n      <mat-card-content>\n        <!-- Email -->\n        <mat-form-field class=\"input-full-width\">\n          <label>\n            <input\n              formControlName=\"email\"\n              type=\"email\"\n              matInput\n              required\n              placeholder=\"Enter your email\"\n            />\n          </label>\n          <mat-error *ngIf=\"hasError('email', 'pattern')\" i18n\n            >Incorrect formatting</mat-error\n          >\n        </mat-form-field>\n        <!-- User name -->\n        <mat-form-field class=\"input-full-width\">\n          <label>\n            <input\n              formControlName=\"username\"\n              type=\"text\"\n              matInput\n              required\n              placeholder=\"Enter an username\"\n            />\n          </label>\n          <mat-error *ngIf=\"hasError('email', 'pattern')\" i18n\n            >Incorrect formatting</mat-error\n          >\n        </mat-form-field>\n\n        <!-- Enter New Password -->\n        <mat-form-field appearance=\"outline\" class=\"input-full-width\">\n          <mat-label i18n>New Password</mat-label>\n          <label>\n            <input\n              matInput\n              #passwordWithValidation\n              required\n              formControlName=\"password\"\n              placeholder=\"New Password\"\n              [type]=\"hidePassword ? 'password' : 'text'\"\n            />\n          </label>\n          <mat-icon matSuffix (click)=\"hidePassword = !hidePassword\"\n            >{{ hidePassword ? \"visibility\" : \"visibility_off\" }}\n          </mat-icon>\n        </mat-form-field>\n        <mat-password-strength\n          [password]=\"passwordWithValidation.value\"\n          (onStrengthChanged)=\"onStrengthChanged($event)\"\n        >\n        </mat-password-strength>\n        <!-- Password's strength info -->\n        <label *ngIf=\"passwordStrength > 1\" class=\"password-strength\" i18n\n          >Password Strength:\n          <span *ngIf=\"passwordStrength <= 20\" i18n>Weak</span>\n          <span\n            *ngIf=\"passwordStrength > 21 && passwordStrength <= 80\"\n            i18n>Medium</span>\n          <span *ngIf=\"passwordStrength > 81\" i18n=\"@@ssp_strong\">Strong</span>\n        </label>\n        <!-- Confirm New Password -->\n        <mat-form-field\n          appearance=\"outline\"\n          class=\"input-full-width confirmPasswordInput\"\n        >\n          <mat-label i18n>Confirm Password</mat-label>\n          <label>\n            <input\n              matInput\n              formControlName=\"confirmPassword\"\n              required\n              placeholder=\"Confirm Password\"\n              [type]=\"hidePassword ? 'password' : 'text'\"\n            />\n          </label>\n          <mat-icon matSuffix (click)=\"hidePassword = !hidePassword\"\n            >{{ hidePassword ? \"visibility\" : \"visibility_off\" }}\n          </mat-icon>\n        </mat-form-field>\n      </mat-card-content>\n      <mat-card-actions class=\"d-flex flex-column\">\n        <button\n          i18n\n          mat-raised-button\n          color=\"primary\"\n          [disabled]=\"loading\"\n          type=\"submit\"\n        >\n          Create Account\n        </button>\n        <a class=\"text-center\" routerLink=\"/login\" i18n>Login</a>\n      </mat-card-actions>\n    </div>\n    <app-error-messages [errors]=\"errors\"></app-error-messages>\n  </mat-card>\n</form>\n"
 
 /***/ }),
 
@@ -156,30 +156,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AppLayoutComponent", function() { return AppLayoutComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm2015/operators/index.js");
-/* harmony import */ var _services_datastore_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../services/datastore.service */ "./src/app/services/datastore.service.ts");
-
-
 
 
 let AppLayoutComponent = class AppLayoutComponent {
-    constructor(api) {
-        this.api = api;
-        this.users = [];
-    }
-    ngOnInit() {
-        this.api.getUser().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["first"])()).subscribe(users => {
-            this.users = users;
-        });
-    }
 };
 AppLayoutComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: "app-app-layout",
         template: __webpack_require__(/*! raw-loader!./app-layout.component.html */ "./node_modules/raw-loader/index.js!./src/app/_layout/app-layout/app-layout.component.html"),
         styles: [__webpack_require__(/*! ./app-layout.component.scss */ "./src/app/_layout/app-layout/app-layout.component.scss")]
-    }),
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_datastore_service__WEBPACK_IMPORTED_MODULE_3__["DatastoreService"]])
+    })
 ], AppLayoutComponent);
 
 
@@ -551,6 +537,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _layout_pre_autehtication_pre_authentication_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./_layout/pre-autehtication/pre-authentication.component */ "./src/app/_layout/pre-autehtication/pre-authentication.component.ts");
 /* harmony import */ var _layout_app_layout_app_layout_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./_layout/app-layout/app-layout.component */ "./src/app/_layout/app-layout/app-layout.component.ts");
 /* harmony import */ var _guard_auth_guard_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./guard/auth-guard.service */ "./src/app/guard/auth-guard.service.ts");
+/* harmony import */ var _services_cx_resolver__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./services/cx.resolver */ "./src/app/services/cx.resolver.ts");
+
 
 
 
@@ -574,19 +562,26 @@ const routes = [
         component: _layout_app_layout_app_layout_component__WEBPACK_IMPORTED_MODULE_8__["AppLayoutComponent"],
         canActivate: [_guard_auth_guard_service__WEBPACK_IMPORTED_MODULE_9__["AuthGuard"]],
         children: [
-            { path: "current-status", component: _pages_current_status_current_status_component__WEBPACK_IMPORTED_MODULE_5__["CurrentStatusComponent"] },
-            { path: "nested-data", component: _pages_nested_data_nested_data_component__WEBPACK_IMPORTED_MODULE_6__["NestedDataComponent"] },
+            {
+                path: "current-status",
+                component: _pages_current_status_current_status_component__WEBPACK_IMPORTED_MODULE_5__["CurrentStatusComponent"],
+                resolve: { data: _services_cx_resolver__WEBPACK_IMPORTED_MODULE_10__["CxResolver"] }
+            },
+            {
+                path: "nested-data",
+                component: _pages_nested_data_nested_data_component__WEBPACK_IMPORTED_MODULE_6__["NestedDataComponent"],
+                resolve: { data: _services_cx_resolver__WEBPACK_IMPORTED_MODULE_10__["CxResolver"] },
+            },
         ],
     },
-    // otherwise redirect to home
-    { path: "**", redirectTo: "/login", pathMatch: "full" },
 ];
 let AppRoutingModule = class AppRoutingModule {
 };
 AppRoutingModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
         imports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"].forRoot(routes)],
-        exports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"]]
+        exports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"]],
+        providers: [_services_cx_resolver__WEBPACK_IMPORTED_MODULE_10__["CxResolver"]]
     })
 ], AppRoutingModule);
 
@@ -799,7 +794,7 @@ ErrorMessagesComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "section {\n  width: 100%;\n  background: #3f51b5;\n  color: #fff;\n  margin-bottom: 3em;\n}\nsection nav {\n  padding: 8px 16px;\n}\nsection nav .page-links {\n  margin: 10px 15px;\n}\nsection .logout-button p {\n  margin: 0;\n  padding: 0;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL21lZ2Fuci9GU0wvRlNMLUFwcGxpY2F0aW9uLVByb2plY3Qvc3JjL2FwcC9jb21wb25lbnRzL2hlYWRlci9oZWFkZXIuY29tcG9uZW50LnNjc3MiLCJzcmMvYXBwL2NvbXBvbmVudHMvaGVhZGVyL2hlYWRlci5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLFdBQUE7RUFDQSxtQkFBQTtFQUNBLFdBQUE7RUFDQSxrQkFBQTtBQ0NKO0FEQUk7RUFDRSxpQkFBQTtBQ0VOO0FERFE7RUFDSSxpQkFBQTtBQ0daO0FEQ1E7RUFDSSxTQUFBO0VBQ0EsVUFBQTtBQ0NaIiwiZmlsZSI6InNyYy9hcHAvY29tcG9uZW50cy9oZWFkZXIvaGVhZGVyLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsic2VjdGlvbiB7XG4gICAgd2lkdGg6IDEwMCU7XG4gICAgYmFja2dyb3VuZDogIzNmNTFiNTtcbiAgICBjb2xvcjogI2ZmZjtcbiAgICBtYXJnaW4tYm90dG9tOiAzZW07XG4gICAgbmF2e1xuICAgICAgcGFkZGluZzogOHB4IDE2cHg7XG4gICAgICAgIC5wYWdlLWxpbmtzIHtcbiAgICAgICAgICAgIG1hcmdpbjogMTBweCAxNXB4O1xuICAgICAgICB9XG4gICAgfVxuICAgIC5sb2dvdXQtYnV0dG9ue1xuICAgICAgICBwe1xuICAgICAgICAgICAgbWFyZ2luOiAwO1xuICAgICAgICAgICAgcGFkZGluZzogMDtcbiAgICAgICAgfVxuICAgIH1cbn1cbiIsInNlY3Rpb24ge1xuICB3aWR0aDogMTAwJTtcbiAgYmFja2dyb3VuZDogIzNmNTFiNTtcbiAgY29sb3I6ICNmZmY7XG4gIG1hcmdpbi1ib3R0b206IDNlbTtcbn1cbnNlY3Rpb24gbmF2IHtcbiAgcGFkZGluZzogOHB4IDE2cHg7XG59XG5zZWN0aW9uIG5hdiAucGFnZS1saW5rcyB7XG4gIG1hcmdpbjogMTBweCAxNXB4O1xufVxuc2VjdGlvbiAubG9nb3V0LWJ1dHRvbiBwIHtcbiAgbWFyZ2luOiAwO1xuICBwYWRkaW5nOiAwO1xufSJdfQ== */"
+module.exports = "section {\n  width: 100%;\n  background: #3f51b5;\n  color: #fff;\n  margin-bottom: 3em;\n}\nsection nav {\n  padding: 8px 16px;\n}\nsection nav .page-links {\n  margin: 10px 15px;\n}\nsection nav a:hover {\n  color: #fff;\n  text-decoration: none;\n}\nsection nav a.menu-link-active {\n  border-bottom: solid 1.5px #fff;\n}\nsection .logout-button p {\n  margin: 0;\n  padding: 0;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL21lZ2Fuci9GU0wvRlNMLUFwcGxpY2F0aW9uLVByb2plY3Qvc3JjL2FwcC9jb21wb25lbnRzL2hlYWRlci9oZWFkZXIuY29tcG9uZW50LnNjc3MiLCJzcmMvYXBwL2NvbXBvbmVudHMvaGVhZGVyL2hlYWRlci5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLFdBQUE7RUFDQSxtQkFBQTtFQUNBLFdBQUE7RUFDQSxrQkFBQTtBQ0NKO0FEQUk7RUFDRSxpQkFBQTtBQ0VOO0FERFE7RUFDSSxpQkFBQTtBQ0daO0FERFE7RUFDSSxXQUFBO0VBQ0EscUJBQUE7QUNHWjtBRERRO0VBQ0ksK0JBQUE7QUNHWjtBRENRO0VBQ0ksU0FBQTtFQUNBLFVBQUE7QUNDWiIsImZpbGUiOiJzcmMvYXBwL2NvbXBvbmVudHMvaGVhZGVyL2hlYWRlci5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbInNlY3Rpb24ge1xuICAgIHdpZHRoOiAxMDAlO1xuICAgIGJhY2tncm91bmQ6ICMzZjUxYjU7XG4gICAgY29sb3I6ICNmZmY7XG4gICAgbWFyZ2luLWJvdHRvbTogM2VtO1xuICAgIG5hdntcbiAgICAgIHBhZGRpbmc6IDhweCAxNnB4O1xuICAgICAgICAucGFnZS1saW5rcyB7XG4gICAgICAgICAgICBtYXJnaW46IDEwcHggMTVweDtcbiAgICAgICAgfVxuICAgICAgICBhOmhvdmVye1xuICAgICAgICAgICAgY29sb3I6ICNmZmY7XG4gICAgICAgICAgICB0ZXh0LWRlY29yYXRpb246IG5vbmU7XG4gICAgICAgIH1cbiAgICAgICAgYS5tZW51LWxpbmstYWN0aXZlIHtcbiAgICAgICAgICAgIGJvcmRlci1ib3R0b206IHNvbGlkIDEuNXB4ICNmZmY7XG4gICAgICAgIH1cbiAgICB9XG4gICAgLmxvZ291dC1idXR0b257XG4gICAgICAgIHB7XG4gICAgICAgICAgICBtYXJnaW46IDA7XG4gICAgICAgICAgICBwYWRkaW5nOiAwO1xuICAgICAgICB9XG4gICAgfVxufVxuIiwic2VjdGlvbiB7XG4gIHdpZHRoOiAxMDAlO1xuICBiYWNrZ3JvdW5kOiAjM2Y1MWI1O1xuICBjb2xvcjogI2ZmZjtcbiAgbWFyZ2luLWJvdHRvbTogM2VtO1xufVxuc2VjdGlvbiBuYXYge1xuICBwYWRkaW5nOiA4cHggMTZweDtcbn1cbnNlY3Rpb24gbmF2IC5wYWdlLWxpbmtzIHtcbiAgbWFyZ2luOiAxMHB4IDE1cHg7XG59XG5zZWN0aW9uIG5hdiBhOmhvdmVyIHtcbiAgY29sb3I6ICNmZmY7XG4gIHRleHQtZGVjb3JhdGlvbjogbm9uZTtcbn1cbnNlY3Rpb24gbmF2IGEubWVudS1saW5rLWFjdGl2ZSB7XG4gIGJvcmRlci1ib3R0b206IHNvbGlkIDEuNXB4ICNmZmY7XG59XG5zZWN0aW9uIC5sb2dvdXQtYnV0dG9uIHAge1xuICBtYXJnaW46IDA7XG4gIHBhZGRpbmc6IDA7XG59Il19 */"
 
 /***/ }),
 
@@ -815,8 +810,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HeaderComponent", function() { return HeaderComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
-/* harmony import */ var _services_authentication_serivce__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../services/authentication.serivce */ "./src/app/services/authentication.serivce.ts");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
+/* harmony import */ var _services_authentication_serivce__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../services/authentication.serivce */ "./src/app/services/authentication.serivce.ts");
 
 
 
@@ -826,14 +821,14 @@ let HeaderComponent = class HeaderComponent {
         this.router = router;
         this.authenticationService = authenticationService;
         this.routeLinks = [
-            { label: "Current Status", link: "current-status" },
-            { label: "Nested Data", link: "nested-data" },
+            { label: "Current Status", link: "/current-status" },
+            { label: "Nested Data", link: "/nested-data" },
         ];
-        // this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
+        this.authenticationService.currentUser.subscribe(user => this.currentUser = user);
     }
     logout() {
-        // this.authenticationService.logout();
-        // this.router.navigate(["/login"]);
+        this.authenticationService.logout();
+        this.router.navigate(["/login"]);
     }
 };
 HeaderComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -842,8 +837,8 @@ HeaderComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         template: __webpack_require__(/*! raw-loader!./header.component.html */ "./node_modules/raw-loader/index.js!./src/app/components/header/header.component.html"),
         styles: [__webpack_require__(/*! ./header.component.scss */ "./src/app/components/header/header.component.scss")]
     }),
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"],
-        _services_authentication_serivce__WEBPACK_IMPORTED_MODULE_2__["AuthenticationService"]])
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"],
+        _services_authentication_serivce__WEBPACK_IMPORTED_MODULE_3__["AuthenticationService"]])
 ], HeaderComponent);
 
 
@@ -982,16 +977,14 @@ let FakeBackendInterceptor = class FakeBackendInterceptor {
         const isLoggedIn = authHeader && authHeader.startsWith("Bearer fake-jwt-token");
         // wrap in delayed observable to simulate server api call
         return Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["of"])(null).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["mergeMap"])(() => {
-            console.log("FBI: request.url: ", request.url);
             // authenticate - public
             if (request.url.endsWith("auth/authenticate") && request.method === "POST") {
-                console.log("FBI: users", users);
                 const user = users.find(x => x.username === request.body.username && x.password === request.body.password);
                 if (!user) {
                     return error("Username or password is incorrect");
                 }
                 return ok({
-                    id: user.userId,
+                    userId: user.userId,
                     username: user.username,
                     email: user.email,
                     token: `fake-jwt-token`
@@ -1008,7 +1001,6 @@ let FakeBackendInterceptor = class FakeBackendInterceptor {
             return next.handle(request);
         }))
             // call materialize and dematerialize to ensure delay even if an error
-            // is thrown (https://github.com/Reactive-Extensions/RxJS/issues/648)
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["materialize"])())
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["delay"])(500))
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["dematerialize"])());
@@ -1110,8 +1102,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var src_app_services_datastore_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/services/datastore.service */ "./src/app/services/datastore.service.ts");
-/* harmony import */ var _animations__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../animations */ "./src/app/animations.ts");
+/* harmony import */ var _animations__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../animations */ "./src/app/animations.ts");
+/* harmony import */ var _services_authentication_serivce__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../services/authentication.serivce */ "./src/app/services/authentication.serivce.ts");
 
 
 
@@ -1119,18 +1111,15 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let CurrentStatusComponent = class CurrentStatusComponent {
-    constructor(_api, _activatedRoute) {
-        this._api = _api;
-        this._activatedRoute = _activatedRoute;
+    constructor(authenticationService, route) {
+        this.authenticationService = authenticationService;
+        this.route = route;
         this.policies = [];
     }
     ngOnInit() {
-        // TODO - method slow, as pulling in all policies rather than policies related to userId
-        this._subscription = this._api
-            .getPolicies()
-            .subscribe((policies) => {
-            this.policies = lodash__WEBPACK_IMPORTED_MODULE_3___default.a.filter(policies, {
-                userId: parseInt(this._activatedRoute.snapshot.paramMap.get("userId"))
+        this._subscription = this.authenticationService.currentUser.subscribe(user => {
+            this.policies = lodash__WEBPACK_IMPORTED_MODULE_3___default.a.filter(this.route.snapshot.data.data, {
+                userId: user.userId
             });
         });
     }
@@ -1144,10 +1133,10 @@ CurrentStatusComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: "app-current-status",
         template: __webpack_require__(/*! raw-loader!./current-status.component.html */ "./node_modules/raw-loader/index.js!./src/app/pages/current-status/current-status.component.html"),
-        animations: [_animations__WEBPACK_IMPORTED_MODULE_5__["fadeIn"]],
+        animations: [_animations__WEBPACK_IMPORTED_MODULE_4__["fadeIn"]],
         styles: [__webpack_require__(/*! ./current-status.component.scss */ "./src/app/pages/current-status/current-status.component.scss")]
     }),
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_services_datastore_service__WEBPACK_IMPORTED_MODULE_4__["DatastoreService"],
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_authentication_serivce__WEBPACK_IMPORTED_MODULE_5__["AuthenticationService"],
         _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"]])
 ], CurrentStatusComponent);
 
@@ -1179,11 +1168,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm2015/forms.js");
-/* harmony import */ var src_app_services_datastore_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/services/datastore.service */ "./src/app/services/datastore.service.ts");
-/* harmony import */ var _shared_types__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../shared/types */ "./src/app/shared/types.ts");
-/* harmony import */ var _services_authentication_serivce__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../services/authentication.serivce */ "./src/app/services/authentication.serivce.ts");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm2015/operators/index.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm2015/operators/index.js");
+/* harmony import */ var src_app_services_datastore_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/services/datastore.service */ "./src/app/services/datastore.service.ts");
+/* harmony import */ var _shared_types__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../shared/types */ "./src/app/shared/types.ts");
+/* harmony import */ var _services_authentication_serivce__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../services/authentication.serivce */ "./src/app/services/authentication.serivce.ts");
 
 
 
@@ -1203,7 +1192,7 @@ let LogInComponent = class LogInComponent {
             password: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]("", [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required])
         });
         this.hidePassword = true;
-        this.errorType = _shared_types__WEBPACK_IMPORTED_MODULE_4__["ErrorType"];
+        this.errorType = _shared_types__WEBPACK_IMPORTED_MODULE_6__["ErrorType"];
         this.errors = [];
         this.loading = false;
     }
@@ -1213,27 +1202,25 @@ let LogInComponent = class LogInComponent {
     ngOnInit() {
         // reset login status
         this.authenticationService.logout();
-        // get return url from route parameters or default to '/'
-        this.returnUrl = this.route.snapshot.queryParams["returnUrl"] || "/";
+        // get return url from route parameters or default to '/current-status'
+        this.returnUrl = this.route.snapshot.queryParams["returnUrl"] || "/current-status";
     }
     // easy access to form fields
     get f() { return this.loginForm.controls; }
     login() {
         this.errors = [];
         if (!this.loginForm.valid) {
-            this.errors.push(_shared_types__WEBPACK_IMPORTED_MODULE_4__["ErrorType"].Validation);
+            this.errors.push(_shared_types__WEBPACK_IMPORTED_MODULE_6__["ErrorType"].Validation);
             return;
         }
         this.loading = true;
         this._subscription = this.authenticationService.login(this.f.username.value, this.f.password.value)
-            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["first"])())
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["first"])())
             .subscribe(data => {
-            console.log("login: success", data);
-            console.log(this.returnUrl);
             this.router.navigate([this.returnUrl]);
         }, error => {
             console.log("error", error);
-            this.errors.push(error);
+            this.errors.push(this.errorType.Failed);
             this.loading = false;
         });
     }
@@ -1249,10 +1236,10 @@ LogInComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         template: __webpack_require__(/*! raw-loader!./log-in.component.html */ "./node_modules/raw-loader/index.js!./src/app/pages/log-in/log-in.component.html"),
         styles: [__webpack_require__(/*! ./log-in.component.scss */ "./src/app/pages/log-in/log-in.component.scss")]
     }),
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_services_datastore_service__WEBPACK_IMPORTED_MODULE_3__["DatastoreService"],
-        _services_authentication_serivce__WEBPACK_IMPORTED_MODULE_5__["AuthenticationService"],
-        _angular_router__WEBPACK_IMPORTED_MODULE_6__["ActivatedRoute"],
-        _angular_router__WEBPACK_IMPORTED_MODULE_6__["Router"]])
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_services_datastore_service__WEBPACK_IMPORTED_MODULE_5__["DatastoreService"],
+        _services_authentication_serivce__WEBPACK_IMPORTED_MODULE_7__["AuthenticationService"],
+        _angular_router__WEBPACK_IMPORTED_MODULE_3__["ActivatedRoute"],
+        _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]])
 ], LogInComponent);
 
 
@@ -1295,8 +1282,7 @@ let InnerTableComponent = class InnerTableComponent {
         this.details = [];
     }
     ngOnInit() {
-        // TODO: how to only sub when in view?
-        //     - something to do with the async pipe
+        // TODO: how to only sub when in view? - something to do with the async pipe
         this._subscription = this._api.getPoliciesDetails().subscribe(details => {
             this.details = lodash__WEBPACK_IMPORTED_MODULE_2___default.a.filter(details, {
                 polId: this.polId
@@ -1354,8 +1340,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_animations__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/animations */ "./node_modules/@angular/animations/fesm2015/animations.js");
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var src_app_services_datastore_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/app/services/datastore.service */ "./src/app/services/datastore.service.ts");
-/* harmony import */ var _animations__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../animations */ "./src/app/animations.ts");
+/* harmony import */ var _animations__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../animations */ "./src/app/animations.ts");
+/* harmony import */ var _services_authentication_serivce__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../services/authentication.serivce */ "./src/app/services/authentication.serivce.ts");
 
 
 
@@ -1365,25 +1351,24 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let NestedDataComponent = class NestedDataComponent {
-    constructor(_api, _activatedRoute) {
-        this._api = _api;
-        this._activatedRoute = _activatedRoute;
-        this.policies = [];
+    constructor(route, authenticationService) {
+        this.route = route;
+        this.authenticationService = authenticationService;
         this.dataSource = new _angular_material__WEBPACK_IMPORTED_MODULE_3__["MatTableDataSource"]();
         this.columnsToDisplay = ["num", "amount", "description"];
     }
     ngOnInit() {
-        this._getTableData();
-    }
-    _getTableData() {
-        this._subscription = this._api
-            .getPolicies()
-            .subscribe((policies) => {
-            this.policies = lodash__WEBPACK_IMPORTED_MODULE_5___default.a.filter(policies, {
-                userId: parseInt(this._activatedRoute.snapshot.paramMap.get("userId"))
+        // TODO - set id as route, so can do snap shot.
+        this._subscription = this.authenticationService.currentUser.subscribe(user => {
+            this.dataSource.data = lodash__WEBPACK_IMPORTED_MODULE_5___default.a.filter(this.route.snapshot.data.data, {
+                userId: user.userId
             });
-            this.dataSource.data = this.policies;
         });
+    }
+    ngOnDestroy() {
+        if (this._subscription) {
+            this._subscription.unsubscribe();
+        }
     }
 };
 NestedDataComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -1391,7 +1376,7 @@ NestedDataComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         selector: "app-nested-data",
         template: __webpack_require__(/*! raw-loader!./nested-data.component.html */ "./node_modules/raw-loader/index.js!./src/app/pages/nested-data/nested-data.component.html"),
         animations: [
-            _animations__WEBPACK_IMPORTED_MODULE_7__["fadeIn"],
+            _animations__WEBPACK_IMPORTED_MODULE_6__["fadeIn"],
             Object(_angular_animations__WEBPACK_IMPORTED_MODULE_4__["trigger"])("detailExpand", [
                 Object(_angular_animations__WEBPACK_IMPORTED_MODULE_4__["state"])("collapsed", Object(_angular_animations__WEBPACK_IMPORTED_MODULE_4__["style"])({ height: "0px", minHeight: "0" })),
                 Object(_angular_animations__WEBPACK_IMPORTED_MODULE_4__["state"])("expanded", Object(_angular_animations__WEBPACK_IMPORTED_MODULE_4__["style"])({ height: "*" })),
@@ -1400,8 +1385,8 @@ NestedDataComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         ],
         styles: [__webpack_require__(/*! ./nested-data.component.scss */ "./src/app/pages/nested-data/nested-data.component.scss")]
     }),
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_services_datastore_service__WEBPACK_IMPORTED_MODULE_6__["DatastoreService"],
-        _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"]])
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"],
+        _services_authentication_serivce__WEBPACK_IMPORTED_MODULE_7__["AuthenticationService"]])
 ], NestedDataComponent);
 
 
@@ -1455,19 +1440,24 @@ let SignInComponent = class SignInComponent {
             confirmPassword: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](),
         });
     }
-    navigateTo(page) {
-        this.dataStore.navigateTo(page);
+    ngOnInit() {
+        console.log("ngOnInit");
+        this.dataStore.getUsers().subscribe(data => {
+            console.log(data);
+        });
     }
     signUp() {
-        this.errors = [];
-        if (!this.signUpForm.valid) {
-            this.errors.push(_shared_types__WEBPACK_IMPORTED_MODULE_4__["ErrorType"].Validation);
-            return;
-        }
-        this.loading = true;
-        this.dataStore.createUser(this._formToUserObject()).subscribe((ret) => {
-            console.log("user created: ", ret);
-        });
+        console.log("sign up");
+        // this.errors = [];
+        //
+        // if (!this.signUpForm.valid) {
+        //   this.errors.push(ErrorType.Validation);
+        //   return;
+        // }
+        // this.loading = true;
+        // this.dataStore.createUser(this._formToUserObject()).subscribe((ret) => {
+        //   console.log("user created: ", ret);
+        // });
     }
     hasError(controlName, errorName) {
         return this.signUpForm.controls[controlName].hasError(errorName);
@@ -1475,24 +1465,15 @@ let SignInComponent = class SignInComponent {
     onStrengthChanged(strength) {
         this.passwordStrength = strength;
     }
-    ngOnInit() {
-        this._subscription = this.dataStore.getUser().subscribe((users) => {
-            this._allUsers = users;
-            console.log(this._allUsers);
-        });
-    }
-    ngOnDestroy() {
-        if (this._subscription) {
-            this._subscription.unsubscribe();
-        }
-    }
-    _generateUserId() {
-        const l = this._allUsers.length;
-        return this._allUsers[l - 1].userId + 1;
-    }
+    ngOnDestroy() { }
+    // private _generateUserId() {
+    //   console.log("_generateUserId");
+    //   let n: number;
+    //   return n;
+    // }
     _formToUserObject() {
         const newUser = {
-            userId: this._generateUserId(),
+            userId: 3,
             username: this.signUpForm.get("username").value,
             password: this.signUpForm.get("password").value,
             email: this.signUpForm.get("email").value,
@@ -1545,13 +1526,11 @@ let AuthenticationService = class AuthenticationService {
         return this.currentUserSubject.value;
     }
     login(username, password) {
-        console.log("AuthenticationService, login: ", username);
         return this.http.post(_config__WEBPACK_IMPORTED_MODULE_5__["config"].apiUrl + "auth/authenticate", { username, password })
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(user => {
-            console.log(user);
-            console.log(user.token);
             // login successful if there's a jwt token in the response
             if (user && user.token) {
+                // TODO - use cache instead of local storage?
                 // store user details and jwt token in local storage to keep user logged in between page refreshes
                 localStorage.setItem("currentUser", JSON.stringify(user));
                 this.currentUserSubject.next(user);
@@ -1569,6 +1548,39 @@ AuthenticationService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({ providedIn: "root" }),
     tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"]])
 ], AuthenticationService);
+
+
+
+/***/ }),
+
+/***/ "./src/app/services/cx.resolver.ts":
+/*!*****************************************!*\
+  !*** ./src/app/services/cx.resolver.ts ***!
+  \*****************************************/
+/*! exports provided: CxResolver */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CxResolver", function() { return CxResolver; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _datastore_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./datastore.service */ "./src/app/services/datastore.service.ts");
+
+
+
+let CxResolver = class CxResolver {
+    constructor(_api) {
+        this._api = _api;
+    }
+    resolve(route) {
+        return this._api.getPolicies();
+    }
+};
+CxResolver = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(),
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_datastore_service__WEBPACK_IMPORTED_MODULE_2__["DatastoreService"]])
+], CxResolver);
 
 
 
@@ -1604,7 +1616,7 @@ let DatastoreService = class DatastoreService {
     navigateTo(page) {
         this.router.navigate([`/${page}`]);
     }
-    getUser() {
+    getUsers() {
         return this.http.get(_config__WEBPACK_IMPORTED_MODULE_5__["config"].apiUrl + "auth");
     }
     getPolicies() {
@@ -1614,14 +1626,11 @@ let DatastoreService = class DatastoreService {
         return this.http.get(_config__WEBPACK_IMPORTED_MODULE_5__["config"].apiUrl + "policiesDetails");
     }
     createUser(user) {
-        const options = {
-            headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({ "Content-Type": "application/json" })
-        };
-        return this.http.post(_config__WEBPACK_IMPORTED_MODULE_5__["config"].apiUrl + "auth", user, options);
+        return this.http.post(_config__WEBPACK_IMPORTED_MODULE_5__["config"].apiUrl + "auth", { user });
     }
     // Only for Demo purposes
     apiData() {
-        const response1 = this.getUser();
+        const response1 = this.getUsers();
         const response2 = this.getPolicies();
         const response3 = this.getPoliciesDetails();
         return Object(rxjs__WEBPACK_IMPORTED_MODULE_4__["forkJoin"])([response1, response2, response3]);
@@ -1631,7 +1640,8 @@ DatastoreService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
         providedIn: "root"
     }),
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"], _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"]])
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"],
+        _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"]])
 ], DatastoreService);
 
 

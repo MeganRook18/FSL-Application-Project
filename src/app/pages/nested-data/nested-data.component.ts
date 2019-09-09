@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from "@angular/core";
+import {Component, OnDestroy, OnInit, ViewChild} from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import {MatTableDataSource} from "@angular/material";
 import {animate, state, style, transition, trigger} from "@angular/animations";
@@ -8,6 +8,7 @@ import { policiesI } from "../../app.models";
 import {fadeIn} from "../../animations";
 import {AuthenticationService} from "../../services/authentication.serivce";
 import {Subscription} from "rxjs";
+import {MatSort} from "@angular/material/sort";
 
 @Component({
   selector: "app-nested-data",
@@ -27,6 +28,8 @@ export class NestedDataComponent implements OnInit, OnDestroy {
   public columnsToDisplay = ["num", "amount", "description"];
   public expandedElement: policiesI | null;
 
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
+
   private _subscription: Subscription;
 
   constructor(
@@ -35,10 +38,10 @@ export class NestedDataComponent implements OnInit, OnDestroy {
       ) {}
 
   ngOnInit() {
-    // TODO - set id as route, so can do snap shot.
     this._subscription = this.authenticationService.currentUser.subscribe(user => {
          this.dataSource.data = _.filter(this.route.snapshot.data.data, {
-          userId: user.id});
+          userId: user.userId});
+         this.dataSource.sort = this.sort;
      });
   }
 

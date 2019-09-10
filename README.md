@@ -8,4 +8,4 @@ Currently:
 Only authorizsed user can login and see the data that is theirs. I use the [CxResolver] to populate the user's data in to the tables via route. 
 
 How I would in improve: 
-Swap out local storage for rxjs cache.
+Swap out local storage for rxjs cache. Mock activeRoute.snapshot.data in the unit test. 

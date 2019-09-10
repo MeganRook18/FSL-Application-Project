@@ -1,16 +1,24 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import { Router } from "@angular/router";
-import { Observable, forkJoin } from "rxjs";
+import {Observable, of} from "rxjs";
 
 import { authI, policiesI, policiesDetailsI } from "../app.models";
 import { config } from "../../config";
+
+
+const httpOptions = {
+  headers: new HttpHeaders({ "Content-Type": "application/json" })
+};
 
 @Injectable({
   providedIn: "root"
 })
 export class DatastoreService {
-  constructor(private router: Router, private http: HttpClient) {}
+  constructor(
+      private router: Router,
+      private http: HttpClient,
+  ) {}
 
   navigateTo(page: string) {
     this.router.navigate([`/${page}`]);
@@ -28,17 +36,7 @@ export class DatastoreService {
     return this.http.get<policiesDetailsI[]>(config.apiUrl + "policiesDetails");
   }
 
-  public createUser(user) {
-    console.log(user);
-    return this.http
-        .post(config.apiUrl + "auth", user);
-  }
-
-  // Only for Demo purposes
-  public apiData(): Observable<any[]> {
-    const response1 = this.getUser();
-    const response2 = this.getPolicies();
-    const response3 = this.getPoliciesDetails();
-    return forkJoin([response1, response2, response3]);
+  public createUser(user: authI): Observable<authI> {
+    return this.http.post<authI>(config.apiUrl + "auth", user, httpOptions);
   }
 }

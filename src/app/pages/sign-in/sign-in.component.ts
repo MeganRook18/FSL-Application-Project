@@ -40,7 +40,6 @@ export class SignInComponent implements OnInit, OnDestroy {
   private static _passwordMatchValidator(signUpForm: FormGroup) {
     const password = signUpForm.controls.password.value;
     const confirmPassword = signUpForm.controls.confirmPassword.value;
-    console.log(password === confirmPassword);
     return password === confirmPassword;
   }
 
@@ -63,11 +62,12 @@ export class SignInComponent implements OnInit, OnDestroy {
       return;
     } else {
       this.loading = true;
-      // handle post here
-      this.dataStore.createUser(this._formToUserObject()).subscribe(data => {
-        console.log(data);
-        this.loading = false;
-      });
+
+      const newUser: authI = this._formToUserObject();
+      this.dataStore.createUser(newUser).subscribe(user => {
+          this._allUsers.push(user);
+          this.loading = false;
+     });
     }
   }
 

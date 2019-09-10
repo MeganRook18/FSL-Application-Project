@@ -16,6 +16,7 @@ import { ErrorType } from "../../shared/types";
 })
 export class MocKErrorMessagesComponent {
   @Input() errors: ErrorType[] = [];
+  @Input() path: string;
 }
 
 describe("LogInComponent", () => {

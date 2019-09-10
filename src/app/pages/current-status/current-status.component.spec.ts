@@ -1,13 +1,16 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 import { MatTableModule } from "@angular/material";
 import { HttpClientTestingModule } from "@angular/common/http/testing";
-import { RouterModule } from "@angular/router";
+import {ActivatedRoute, RouterModule} from "@angular/router";
 import { RouterTestingModule } from "@angular/router/testing";
 
 import { CurrentStatusComponent } from "./current-status.component";
 import { MaterialModule } from "../../shared/material.modules";
+import {CxResolver} from "../../services/cx.resolver";
+import {of} from "rxjs";
 
-describe("CurrentStatusComponent", () => {
+
+fdescribe("CurrentStatusComponent", () => {
   let component: CurrentStatusComponent;
   let fixture: ComponentFixture<CurrentStatusComponent>;
 
@@ -20,7 +23,10 @@ describe("CurrentStatusComponent", () => {
         RouterModule,
         RouterTestingModule
       ],
-      declarations: [CurrentStatusComponent]
+      declarations: [CurrentStatusComponent],
+      providers: [
+        {provide: ActivatedRoute, useValue: {data: of(CxResolver) }}
+      ]
     }).compileComponents();
     fixture = TestBed.createComponent(CurrentStatusComponent);
     component = fixture.componentInstance;

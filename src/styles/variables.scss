@@ -1,1 +1,32 @@
 $buttonSize: 135px;
+
+$breakpoints: (
+        "phone":        321px,
+        "phone-wide":   480px,
+        "phablet":      560px,
+        "tablet-small": 640px,
+        "tablet":       768px,
+        "tablet-wide":  1024px,
+        "desktop":      1248px,
+        "desktop-wide": 1440px
+);
+
+
+@mixin mq($size, $type: max, $orientation: width) {
+    @if map_has_key($breakpoints, $size) {
+        $size: map_get($breakpoints, $size);
+    }
+    @if $type == max {
+        $size: $size;
+    }
+    @if $orientation == width {
+        @media only screen and (#{$type}-width: $size) {
+            @content;
+        }
+    }
+    @if $orientation == height {
+        @media only screen and (#{$type}-height: $size) {
+            @content;
+        }
+    }
+}

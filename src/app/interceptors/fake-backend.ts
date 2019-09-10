@@ -17,7 +17,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
   intercept(
     request: HttpRequest<any>,
     next: HttpHandler
-  ): Observable<HttpEvent<any>>{
+  ): Observable<HttpEvent<any>> {
     // TODO: connect to database instead of hard code
     const users: authI[] = [
       {
@@ -43,11 +43,9 @@ export class FakeBackendInterceptor implements HttpInterceptor {
       of(null)
         .pipe(
           mergeMap(() => {
+            console.log("FBE");
             // authenticate - public
-            if (
-              request.url.endsWith("auth/authenticate") &&
-              request.method === "POST"
-            ) {
+            if (request.url.endsWith("auth/authenticate") && request.method === "POST") {
               const user = users.find(
                 x =>
                   x.username === request.body.username &&
@@ -61,6 +59,22 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                 username: user.username,
                 email: user.email,
                 token: `fake-jwt-token`
+              });
+            }
+            if (request.url.endsWith("auth") && request.method === "POST") {
+               const  user = users.find(
+                x =>
+                  x.username === request.body.username &&
+                  x.password === request.body.password
+              );
+               if (user) {
+                return error("User already exist");
+              }
+               return ok({
+                 userId: user.userId,
+                 username: user.username,
+                 email: user.email,
+                 token: `fake-jwt-token`,
               });
             }
             // pass through any requests not handled above

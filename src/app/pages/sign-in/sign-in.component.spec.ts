@@ -7,6 +7,7 @@ import { SignInComponent } from "./sign-in.component";
 import { MaterialModule } from "../../shared/material.modules";
 import { ErrorType } from "../../shared/types";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import {RouterTestingModule} from "@angular/router/testing";
 
 @Component({
   selector: "app-error-messages",
@@ -14,6 +15,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 })
 export class MocKErrorMessagesComponent {
   @Input() errors: ErrorType[] = [];
+  @Input() path: string;
 }
 
 describe("SignInComponent", () => {
@@ -27,7 +29,8 @@ describe("SignInComponent", () => {
         BrowserModule,
         FormsModule,
         ReactiveFormsModule,
-        BrowserAnimationsModule
+        BrowserAnimationsModule,
+        RouterTestingModule,
       ],
       declarations: [SignInComponent, MocKErrorMessagesComponent]
     }).compileComponents();
